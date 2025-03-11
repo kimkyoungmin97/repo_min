@@ -7,12 +7,31 @@
 	<select id="selectList"  resultMap="resultMapObj">
 		SELECT 
 			ifcgSeq,
-		    ifcgCode,
+			ifcgDelNy,
 		    ifcgName,
-		    ifcgCount
+		    ifcgCount,
+		    registrationDate,
+		    modificationDate
 		From
 			codegroup
+		ORDER BY ifcgSeq DESC
 	</select>
+	
+	<insert id="insert">
+		insert into codegroup(
+		
+			ifcgName	
+					
+		)VALUES(
+			
+			#{ifcgName}
+		
+		)		
+		
+		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 	
 	
 

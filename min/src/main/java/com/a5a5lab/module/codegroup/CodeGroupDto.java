@@ -3,9 +3,10 @@ package com.a5a5lab.module.codegroup;
 public class CodeGroupDto {
 	private String ifcgSeq;
 	private int ifcgDelNy;
-	private int ifcgCode;
 	private String ifcgName;
 	private int ifcgCount;
+	private String registrationDate;
+	private String modificationDate;
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}
@@ -17,12 +18,6 @@ public class CodeGroupDto {
 	}
 	public void setIfcgDelNy(int ifcgDelNy) {
 		this.ifcgDelNy = ifcgDelNy;
-	}
-	public int getIfcgCode() {
-		return ifcgCode;
-	}
-	public void setIfcgCode(int ifcgCode) {
-		this.ifcgCode = ifcgCode;
 	}
 	public String getIfcgName() {
 		return ifcgName;
@@ -36,6 +31,19 @@ public class CodeGroupDto {
 	public void setIfcgCount(int ifcgCount) {
 		this.ifcgCount = ifcgCount;
 	}
+	public String getRegistrationDate() {
+		return registrationDate;
+	}
+	public void setRegistrationDate(String registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+	public String getModificationDate() {
+		return modificationDate;
+	}
+	public void setModificationDate(String modificationDate) {
+		this.modificationDate = modificationDate;
+	}
+	
 	
 
 
