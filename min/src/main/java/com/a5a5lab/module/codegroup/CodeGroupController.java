@@ -22,6 +22,7 @@ public class CodeGroupController {
 		
 		return "/xdm/codegroup/CodeGroupXdmList";
 	}
+	
 
 	
 	@RequestMapping(value="/codegroup/codegroupxdmform")

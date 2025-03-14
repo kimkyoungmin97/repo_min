@@ -30,9 +30,10 @@
             <div class="card-body">
               <h5 class="card-title"><strong>Code Group</strong></h5>
 
-              <form action="/codegroupxdmlist" name="formList"  id="formList" method="post" autocomplete="OFF">
-              		<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+              <form action="/codegroupxdmlist" name="formlist"  id="formList" method="post" autocomplete="OFF">
+              		<input type="hidden" id="thisPage" name="thisPage"  th:value="${vo.thisPage}" default="1"/>
 					<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+					
                 <div class="row my-3">
                   <div class="col-2">
                     <select class="form-select" aria-label="Default select example">
@@ -146,7 +147,7 @@
 							</a>
 						</li>
 						<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
-							<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
+							<a class="page-link"  th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
 						</li>
 						<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;">
 							<a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|">
@@ -198,9 +199,10 @@
   <script src="xdm/template/niceadmin/assets/js/main.js"></script>
   <script type="text/javascript">
    function goList(thisPage){
-	  
+	   
+	   document.getElementById("thisPage").value=thisPage;
 	   document.getElementById("formList").submit();
-	   alert("안녕");
+	 
 	  
 	   
 	   

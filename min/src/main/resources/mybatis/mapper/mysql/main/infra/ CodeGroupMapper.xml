@@ -27,7 +27,7 @@
 			codegroup
 	
 		ORDER BY ifcgSeq DESC
-		LIMIT #{rowNumToShow}
+		LIMIT #{startRnumForMysql},#{rowNumToShow} 
 		
 	</select>
 	
