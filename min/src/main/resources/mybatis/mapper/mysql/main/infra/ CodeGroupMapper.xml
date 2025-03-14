@@ -4,6 +4,17 @@
 <mapper namespace="com.a5a5lab.module.codegroup.CodeGroupDao">
 	<resultMap id="resultMapObj" type="com.a5a5lab.module.codegroup.CodeGroupDto"></resultMap>
 
+
+	<sql id="selectCommon">
+		FROM codegroup
+		WHERE 1=1
+	</sql>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon"/>
+	</select>
+	
 	<select id="selectList"  resultMap="resultMapObj">
 		SELECT 
 			ifcgSeq,
@@ -14,8 +25,12 @@
 		    modificationDate
 		From
 			codegroup
+	
 		ORDER BY ifcgSeq DESC
+		LIMIT #{rowNumToShow}
+		
 	</select>
+	
 	
 	<insert id="insert">
 		insert into codegroup(

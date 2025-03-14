@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 public class CodeGroupController {
 	
@@ -13,12 +14,15 @@ public class CodeGroupController {
 	CodeGroupService codeGroupService;
 	
 	@RequestMapping(value="/codegroupxdmlist")
-	public String codegroupxdmlist(Model model) {
+	public String codegroupxdmlist(Model model,  CodeGroupVo vo) {
 		
-		model.addAttribute("list", codeGroupService.selectList());
+	    vo.setParamsPaging(codeGroupService.selectOneCount(vo));
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", codeGroupService.selectList(vo));
 		
 		return "/xdm/codegroup/CodeGroupXdmList";
 	}
+
 	
 	@RequestMapping(value="/codegroup/codegroupxdmform")
 	public String codegroupxdmform() {
