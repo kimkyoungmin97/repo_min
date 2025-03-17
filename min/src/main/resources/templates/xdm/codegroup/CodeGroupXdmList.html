@@ -30,7 +30,7 @@
             <div class="card-body">
               <h5 class="card-title"><strong>Code Group</strong></h5>
 
-              <form action="/codegroupxdmlist" name="formlist"  id="formList" method="post" autocomplete="OFF">
+              <form  name="formlist"  id="formList" method="get" autocomplete="OFF">
               		<input type="hidden" id="thisPage" name="thisPage"  th:value="${vo.thisPage}" default="1"/>
 					<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 					
@@ -84,7 +84,7 @@
                   </div>
                   <div class="col">
                     <button type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-rotate-right"></i></button>
+                    <button type="button" class="btn btn-light btn btn-outline-dark" th:attr="onclick=|goList(1)|"><i class="fa-solid fa-rotate-right"></i></button>
                   </div>
                 </div>
               
@@ -92,16 +92,17 @@
                 <div>
                   <div class="row" style="margin-top: 2%;">
                    <div class="col">
-                     <strong>Total:6</strong>
+                     <strong>Total:<span th:text="${vo.totalRows}"></span></strong>
                    </div>
                    <div class="col-2">
-                     <select class="form-select" aria-label="Default select example">
+                     <select class="form-select"  aria-label="Default select example">
                        <option selected>5</option>
-                       <option value="1">10</option>
+                       <option value="1" >10</option>
                        <option value="2">15</option>
                      </select>
                    </div>
                  </div>
+               
                  <div class="row">
                    <div class="col">
                    
@@ -110,6 +111,7 @@
                       <thead>
                         <tr>
                           <th><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></th>
+                          <th>#</th>
                           <th>코드그룹 코드</th>
                           <th>사용여부</th>
                           <th>코드그룹 이름</th>
@@ -126,6 +128,7 @@
                       	</tr>
                         <tr  th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" >
                           <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
+                          <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
                           <td th:text="${list.ifcgSeq}"></td>
                           <td th:text="${list.ifcgDelNy}"></td>
                           <td th:text="${list.ifcgName}"></td>
@@ -170,6 +173,7 @@
                  </div>
               </div>
              </form>
+            
            
               <!-- End Table with stripped rows -->
               
@@ -197,17 +201,17 @@
 
   <!-- Template Main JS File -->
   <script src="xdm/template/niceadmin/assets/js/main.js"></script>
+  
   <script type="text/javascript">
-   function goList(thisPage){
-	   
+  
+  
+   function goList(thisPage){ 
+	   formlist.action ="/codegroupxdmlist";
 	   document.getElementById("thisPage").value=thisPage;
-	   document.getElementById("formList").submit();
-	 
-	  
-	   
-	   
-	   
+	   document.getElementById("formList").submit(); 
    }
+   
+   
   	
   </script>
 
