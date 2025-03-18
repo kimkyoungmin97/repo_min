@@ -9,15 +9,16 @@
 <div th:replace="~{xdm/include/sidebar :: sidebar}"></div>
   
 
-  <main id="main" class="main">
+  
+    <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>코드 그룹관리</h1>
+      <h1>유저 관리</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">코드 그룹관리</li>
+          <li class="breadcrumb-item active">유저 관리</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -30,10 +31,7 @@
             <div class="card-body">
               <h5 class="card-title"><strong>Code Group</strong></h5>
 
-              <form  name="formList"  id="formList" method="get" autocomplete="OFF">
-              		<input type="hidden" id="thisPage" name="thisPage"  th:value="${vo.thisPage}" default="1"/>
-					<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
-					
+              <form>
                 <div class="row my-3">
                   <div class="col-2">
                     <select class="form-select" aria-label="Default select example">
@@ -84,79 +82,82 @@
                   </div>
                   <div class="col">
                     <button type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button type="button" class="btn btn-light btn btn-outline-dark" th:attr="onclick=|goList(1)|"><i class="fa-solid fa-rotate-right"></i></button>
+                    <button type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-rotate-right"></i></button>
                   </div>
                 </div>
-              
+              </form>
+                
+
               <!-- Table with stripped rows -->
                 <div>
                   <div class="row" style="margin-top: 2%;">
                    <div class="col">
-                     <strong>Total:<span th:text="${vo.totalRows}"></span></strong>
+                     <strong>Total:6</strong>
                    </div>
                    <div class="col-2">
-                     <select class="form-select" aria-label="Default select example" th:attr="onchange=|showList(this.value)|">
-						<option th:selected="${vo.rowNumToShow} == '5'">5</option>
-						<option th:selected="${vo.rowNumToShow} == '10'">10</option>
-						<option th:selected="${vo.rowNumToShow} == '15'">15</option>
+                     <select class="form-select" aria-label="Default select example">
+                       <option selected>5</option>
+                       <option value="1">10</option>
+                       <option value="2">15</option>
                      </select>
                    </div>
                  </div>
-               
                  <div class="row">
                    <div class="col">
-                   
                      <table class="table" style="text-align: center;">
-                     
                       <thead>
                         <tr>
                           <th><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></th>
                           <th>#</th>
-                          <th>코드그룹 코드</th>
-                          <th>사용여부</th>
-                          <th>코드그룹 이름</th>
-                          <th>갯수</th>
-                          <th>등록일</th>
-                          <th>수정일</th>
+                          <th>이름</th>
+                          <th>성별</th>
+                          <th>생년월일</th>
+                          <th>통신사</th>
+                          <th>전화번호</th>
+                          <th>아이디</th>
+                          <th>비밀번호</th>
+                          <th>이메일</th>
+                          <th>닉네임</th>
+                          <th>주소</th>
                         </tr>
                       </thead>
                       <tbody>
-                      	<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn reveal-trigger position-static">
-                      		<td colspan="7" style="text-align:center;">
-                      		<p class="fs-0"> There is no data!</p>
-                      		</td>
-                      	</tr>
-                        <tr  th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" >
+                        <tr th:each="list : ${list}">
                           <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
-                          <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                          <td th:text="${list.ifcgSeq}"></td>
-                          <td th:text="${list.ifcgDelNy}"></td>
-                          <td th:text="${list.ifcgName}"></td>
-                          <td th:text="${list.xifcdSeqCount}"></td>
-                          <td th:text="${list.registrationDate}"></td>
-                          <td th:text="${list.modificationDate}"></td>
+                          <td th:text="${list.userSeq}"></td>
+                          <td th:text="${list.userName}"></td>
+                          <td th:text="${list.genderCd}"></td>
+                          <td th:text="${list.userBorn}"></td>
+                          <td th:text="${list.telAgencyCd}"></td>
+                          <td th:text="${list.userTel}"></td>
+                          <td th:text="${list.userId}"></td>
+                          <td th:text="${list.userPw}"></td>
+                          <td th:text="${list.userEmail}"></td>
+                          <td th:text="${list.userNickName}"></td>
+                          <td th:text="${list.userAddress}"></td>
                         </tr>
+                        
                       </tbody>
                       </table>
                    </div>
                  </div>
                  <div class="row">
                    <div class="col">
-                     <nav aria-label="Page navigation example" >
+                     <nav aria-label="Page navigation example">
                        <ul class="pagination justify-content-center">
-	                         <li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;">
-							<a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|">
-								<i class="fa-solid fa-angle-left"></i>
-							</a>
-						</li>
-						<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
-							<a class="page-link"  th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
-						</li>
-						<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;">
-							<a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|">
-								<i class="fa-solid fa-angle-right"></i>
-							</a>
-						</li>
+                         <li class="page-item">
+                           <a class="page-link" href="#" aria-label="Previous">
+                             <span aria-hidden="true">&laquo;</span>
+                           </a>
+                         </li>
+                         <li class="page-item"><a class="page-link" href="#">1</a></li>
+                         <li class="page-item"><a class="page-link" href="#">2</a></li>
+                         <li class="page-item"><a class="page-link" href="#">3</a></li>
+                         <li class="page-item">
+                           <a class="page-link" href="#" aria-label="Next">
+                             <span aria-hidden="true">&raquo;</span>
+                           </a>
+                         </li>
                        </ul>
                      </nav>
                    </div>
@@ -164,7 +165,7 @@
                  <div class="row">
                    <div class="col" style="text-align: right;">
                      <div>
-                       <a href="/codegroup/codegroupxdmform" type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+                       <a href="./tables-codeGroup-create.html" type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
                        <button type="button" class="btn btn-success"><i class="fa-solid fa-wrench"></i></button>
                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                        <button type="button" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></button>
@@ -172,9 +173,6 @@
                    </div>
                  </div>
               </div>
-             </form>
-            
-           
               <!-- End Table with stripped rows -->
               
             </div>
@@ -182,6 +180,10 @@
         </div>
       </div>
     </section>
+
+  </main><!-- End #main -->
+
+    
 
   </main><!-- End #main -->
   <div th:replace="~{xdm/include/footer :: footer}"></div>

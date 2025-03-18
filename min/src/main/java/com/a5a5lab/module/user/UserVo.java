@@ -1,7 +1,6 @@
-package com.a5a5lab.module.codegroup;
+package com.a5a5lab.module.user;
 
-public class CodeGroupVo {
-	
+public class UserVo {
 //	paging
 	private int thisPage = 1;									// 현재 페이지
 	private int rowNumToShow =5;								// 화면에 보여줄 데이터 줄 갯수
@@ -126,3 +125,6 @@ public class CodeGroupVo {
 	
 
 }
+
+
+

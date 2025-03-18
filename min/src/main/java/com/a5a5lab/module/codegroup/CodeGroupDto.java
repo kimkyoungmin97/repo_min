@@ -7,6 +7,13 @@ public class CodeGroupDto {
 	private int ifcgCount;
 	private String registrationDate;
 	private String modificationDate;
+	private int xifcdSeqCount;
+	public int getXifcdSeqCount() {
+		return xifcdSeqCount;
+	}
+	public void setXifcdSeqCount(int xifcdSeqCount) {
+		this.xifcdSeqCount = xifcdSeqCount;
+	}
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}

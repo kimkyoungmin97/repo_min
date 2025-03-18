@@ -5,8 +5,8 @@
 <resultMap id="resultMapObj" type="com.a5a5lab.module.code.CodeDto"></resultMap>
 
 <sql id="selectCommon">
-		FROM code
-		WHERE 1=1
+		FROM code AS a
+		
 </sql>
 	
 <select id="selectOneCount" resultType="Integer">
@@ -22,9 +22,10 @@
 	    b.ifcgName, 
 	    a.ifcdName
     
-	from 
-		code AS a
+	<include refid="selectCommon"/>
 	    left join codegroup AS b ON b.ifcgSeq = a.codeGroup_ifcgSeq
+	ORDER BY a.ifcdSeq DESC
+	LIMIT #{startRnumForMysql},#{rowNumToShow} 
 	    
 </select>
 <select id="codeList" resultMap="resultMapObj">
@@ -45,6 +46,9 @@
 	)
 	
 </insert>
+
+		
+
 
 	  
 </mapper>

@@ -7,7 +7,6 @@
 
 	<sql id="selectCommon">
 		FROM codegroup
-		WHERE 1=1
 	</sql>
 	
 	<select id="selectOneCount" resultType="Integer">
@@ -16,16 +15,15 @@
 	</select>
 	
 	<select id="selectList"  resultMap="resultMapObj">
-		SELECT 
+	SELECT 
 			ifcgSeq,
 			ifcgDelNy,
 		    ifcgName,
 		    ifcgCount,
 		    registrationDate,
-		    modificationDate
-		From
-			codegroup
-	
+		    modificationDate,
+		    (select count(aa.ifcdSeq) from code aa where 1=1 and aa.ifcdDelNy = 1 and aa.codeGroup_ifcgSeq = ifcgSeq) as xifcdSeqCount
+		<include refid="selectCommon"/>
 		ORDER BY ifcgSeq DESC
 		LIMIT #{startRnumForMysql},#{rowNumToShow} 
 		

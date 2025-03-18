@@ -15,6 +15,7 @@ public class CodeController {
 		vo.setParamsPaging(codeService.selectOneCount(vo));
 		model.addAttribute("vo",vo);
 		model.addAttribute("list", codeService.selectList(vo));
+		
 		return "/xdm/code/CodeXdmList";
 	}
 	@RequestMapping(value="/codeXdmForm")
