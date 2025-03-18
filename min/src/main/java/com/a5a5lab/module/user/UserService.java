@@ -17,5 +17,8 @@ public class UserService {
 	public int selectOneCount(UserVo vo){
 		return userDao.selectOneCount(vo);
 	}
+	public UserDto selectOne(UserDto userDto){
+		return userDao.selectOne(userDto);
+	}
 
 }

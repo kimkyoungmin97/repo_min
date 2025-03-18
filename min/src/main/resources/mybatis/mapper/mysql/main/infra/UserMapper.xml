@@ -6,6 +6,9 @@
 <sql id="selectCommon">
 	FROM
 		user
+	WHERE
+		1=1
+		AND userDelNy= 1
 </sql>
 <select id="selectOneCount">
 	SELECT 
@@ -24,9 +27,32 @@
 		userPw,
 		userEmail,
 		userNickName,
-		userAddress
+		userAddress,
+		userDelNy
 	<include refid="selectCommon"/>
 	ORDER BY userSeq DESC
+	LIMIT #{startRnumForMysql},#{rowNumToShow}
+</select>
+<select id="selectOne" resultMap="resultMapObj">
+	SELECT
+		userSeq,
+		userName,
+		genderCd,
+		userBorn,
+		telAgencyCd,
+		userTel,
+		userId,
+		userPw,
+		userEmail,
+		userNickName,
+		userAddress,
+		userDelNy
+	FROM
+		user
+	WHERE
+		1=1
+	 AND userSeq = #{userSeq}
+	
 </select>
 
 

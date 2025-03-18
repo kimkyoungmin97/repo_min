@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{xdm/include/head :: head}"></div>
+
+<body>
+
+  <div th:replace="~{xdm/include/header :: header}"></div>
+  <div th:replace="~{xdm/include/sidebar :: sidebar}"></div>
+  
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>유저 관리</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">유저 관리</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="card">
+        <div class="card-header">
+          <h4 style="color: black;"><strong>기본정보</strong></h4>
+        </div>
+        <div class="card-body">
+          <form method="get">
+          	<div class="row">
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">유저번호</label>
+                  <input class="form-control" type="text" name="userSeq" th:value="${item.userSeq}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">이름</label>
+                  <input class="form-control" type="text" name="userName" th:value="${item.userName}" >
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">성별</label>
+                  <input class="form-control" type="text" name="genderCd" th:value="${item.genderCd}" >
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="codeGroupName" class="form-label">생년월일</label>
+                  <input type="text" class="form-control" name="userBorn" th:value="${item.userBorn}">
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="codeGroupName" class="form-label">사용여부</label>
+                  <input type="text" class="form-control" name="userDelNy" th:value="${item.userDelNy}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">통신사</label>
+                  <input class="form-control" type="text" name="telAgencyCd" th:value="${item.telAgencyCd}">
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">전화번호</label>
+                  <input class="form-control" type="text" name="userTel" th:value="${item.userTel}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">아이디</label>
+                  <input class="form-control" type="text" name="userId" th:value="${item.userId}">
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">비밀번호</label>
+                  <input class="form-control" type="text" name="userPw" th:value="${item.userPw}">
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">이메일</label>
+                  <input class="form-control" type="text" name="userEmail" th:value="${item.userEmail}">
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">닉네임</label>
+                  <input class="form-control" type="text" name="userNickName" th:value="${item.userNickName}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">주소</label>
+                  <input class="form-control" type="text" name="userAddress" th:value="${item.userAddress}">
+                </div>
+              </div>
+            </div>
+           
+            <div class="row" style="margin-top: 2%;">
+              <div class="col">
+                <a th:href="@{userxdmlist}" type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-list"></i></a>
+              </div>
+              <div class="col" style="text-align: right;">
+                <button type="button" class="btn btn-primary" id="btnSave"><i class="fa-solid fa-file-import"></i></button>
+              </div>
+            </div>
+          </div>
+          </form>
+       
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <div th:replace="~{xdm/include/footer :: footer}"></div>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+  <div th:replace="~{xdm/include/script :: script}"></div>
+  
+ 
+  <script type="text/javascript">
+  	
+  </script>
+</body>
+
+</html>

@@ -12,6 +12,13 @@ public class UserDto {
 	 private String userEmail;
 	 private String userNickName;
 	 private String userAddress;
+	 private Integer userDelNy;
+	public Integer getUserDelNy() {
+		return userDelNy;
+	}
+	public void setUserDelNy(Integer userDelNy) {
+		this.userDelNy = userDelNy;
+	}
 	public String getUserSeq() {
 		return userSeq;
 	}

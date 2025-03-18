@@ -9,5 +9,6 @@ public interface UserDao {
 	
 	public List<UserDto> selectList(UserVo vo);
 	public int selectOneCount(UserVo vo);
+	public UserDto selectOne(UserDto userDto);
 
 }
