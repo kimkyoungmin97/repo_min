@@ -22,12 +22,12 @@
     </div><!-- End Page Title -->
 
     <section class="section">
+     <form action="/codegroup/codeGroupXdmInst" id="form">
       <div class="card">
         <div class="card-header">
           <h4 style="color: black;"><strong>기본정보</strong></h4>
         </div>
         <div class="card-body">
-          <form action="/codegroup/codeGroupXdmInst" id="form">
             <div class="row">
               <div class="col-3">
                 <div class="mb-3">
@@ -44,7 +44,7 @@
               <div class="col-3">
                 <div class="mb-3">
                   <label for="codeGroupName" class="form-label">코드그룹 이름<span style="color: crimson;">*</span></label>
-                  <input type="text" name="ifcgName" class="form-control" id="codeGroupName" placeholder="한글,영대소문자,숫자">
+                  <input class="form-control" type="text" name="ifcgName" id="ifcgName" placeholder="한글,영대소문자,숫자">
                 </div>
               </div>
             </div>
@@ -77,9 +77,26 @@
               </div>
             </div>
           </div>
-          </form>
-       
-      </div>
+     	 </div>
+    	</form>
+    	<!-- Basic Modal -->
+              <div class="modal" tabindex="-1" id="basicModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">알림창</h5>
+                      <button type="button" class="btn-close" id="a" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    코드이름을 입력해주세요.
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" id="closeModal">닫기</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End Basic Modal-->
+    	
     </section>
 
   </main><!-- End #main -->
@@ -92,9 +109,23 @@
   
  
   <script type="text/javascript">
-  	document.getElementById("btnSave").onclick = function(){
-  		document.getElementById("form").submit();
-  	}
+		let name=document.getElementById("ifcgName");
+		let name_val=name.value;
+  document.getElementById("btnSave").onclick = function(){
+		if(name_val==""){
+			document.getElementById("basicModal").style.display='block';
+			return false;
+		}
+			document.getElementById("form").submit();
+	}
+	document.getElementById("closeModal").onclick=function(){
+		document.getElementById("basicModal").style.display='none';
+		name.focus();	
+	}
+	document.getElementById("a").onclick=function(){
+		document.getElementById("basicModal").style.display='none';
+		name.focus();	
+	}
   </script>
 </body>
 
