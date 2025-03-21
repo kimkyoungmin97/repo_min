@@ -47,6 +47,19 @@
 	
 </insert>
 
+<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			ifcdSeq,
+			 ifcdName,
+			codeGroup_ifcgSeq
+		FROM
+			code 
+			
+		WHERE 1=1
+			AND ifcdDelNy = 1
+		   
+   </select>
+
 		
 
 

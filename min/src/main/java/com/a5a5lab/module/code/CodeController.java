@@ -16,15 +16,15 @@ public class CodeController {
 		model.addAttribute("vo",vo);
 		model.addAttribute("list", codeService.selectList(vo));
 		
+		
 		return "/xdm/code/CodeXdmList";
 	}
 	@RequestMapping(value="/codeXdmForm")
 	public String codeXdmForm(Model model, CodeDto codeDto) {
 		model.addAttribute("list", codeService.codeList(codeDto));
-		System.out.println("테스트" + codeDto.getIfcgSeq());
 		return "xdm/code/CodeXdmForm";
 	}
-	@RequestMapping(value="codeXdmInst")
+	@RequestMapping(value="/codeXdmInst")
 	public String codeXdmInst(CodeDto codeDto) {
 		codeService.insert(codeDto);
 		return "redirect:/codeXdmList";

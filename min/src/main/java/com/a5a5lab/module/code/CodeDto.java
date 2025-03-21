@@ -1,5 +1,8 @@
 package com.a5a5lab.module.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CodeDto {
 	
 	private String ifcdSeq;
@@ -47,6 +50,16 @@ public class CodeDto {
 	public void setIfcgName(String ifcgName) {
 		this.ifcgName = ifcgName;
 	}
+	
+//	for cache
+	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
+	public static List<CodeDto> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	public static void setCachedCodeArrayList(List<CodeDto> cachedCodeArrayList) {
+		CodeDto.cachedCodeArrayList = cachedCodeArrayList;
+	}
+	
 	
 	
 

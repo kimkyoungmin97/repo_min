@@ -22,7 +22,7 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-     <form action="/codegroup/codeGroupXdmInst" id="form">
+     <form  id="form">
       <div class="card">
         <div class="card-header">
           <h4 style="color: black;"><strong>기본정보</strong></h4>
@@ -43,8 +43,8 @@
               </div>
               <div class="col-3">
                 <div class="mb-3">
-                  <label for="codeGroupName" class="form-label">코드그룹 이름<span style="color: crimson;">*</span></label>
-                  <input class="form-control" type="text" name="ifcgName" id="ifcgName" placeholder="한글,영대소문자,숫자">
+                  <label for="ifcgName" class="form-label">코드그룹 이름<span style="color: crimson;">*</span></label>
+                  <input class="form-control" type="text" name="ifcgName" id="ifcgName">
                 </div>
               </div>
             </div>
@@ -109,20 +109,29 @@
   
  
   <script type="text/javascript">
+  		
+  	document.getElementById("btnSave").onclick = function(){
+  		let form=document.getElementById("form");
 		let name=document.getElementById("ifcgName");
-		let name_val=name.value;
-  document.getElementById("btnSave").onclick = function(){
-		if(name_val==""){
+		let nameValue= name.value;
+  		form.action="/codegroup/codeGroupXdmInst";
+  		
+		if(nameValue == ""){
 			document.getElementById("basicModal").style.display='block';
 			return false;
-		}
-			document.getElementById("form").submit();
+		}else{
+			form.submit();			
+			
+		}	
 	}
+  
 	document.getElementById("closeModal").onclick=function(){
+		let name=document.getElementById("ifcgName");
 		document.getElementById("basicModal").style.display='none';
 		name.focus();	
 	}
 	document.getElementById("a").onclick=function(){
+		let name=document.getElementById("ifcgName");
 		document.getElementById("basicModal").style.display='none';
 		name.focus();	
 	}

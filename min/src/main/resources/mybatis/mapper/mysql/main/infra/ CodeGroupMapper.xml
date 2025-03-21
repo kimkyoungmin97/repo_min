@@ -19,7 +19,6 @@
 			ifcgSeq,
 			ifcgDelNy,
 		    ifcgName,
-		    ifcgCount,
 		    registrationDate,
 		    modificationDate,
 		    (select count(aa.ifcdSeq) from code aa where 1=1 and aa.ifcdDelNy = 1 and aa.codeGroup_ifcgSeq = ifcgSeq) as xifcdSeqCount
@@ -31,7 +30,7 @@
 	
 	
 	<insert id="insert">
-		insert into codegroup(
+		INSERT INTO codegroup (
 		
 			ifcgName	
 					
