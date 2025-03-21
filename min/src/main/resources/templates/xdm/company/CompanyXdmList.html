@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{xdm/include/head :: head}"></div>
+
+<body>
+
+	<div th:replace="~{xdm/include/header :: header}"></div>
+	<div th:replace="~{xdm/include/sidebar :: sidebar}"></div>
+
+	<main id="main" class="main">
+
+		<div class="pagetitle">
+			<h1>이사회사 관리</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item">Tables</li>
+					<li class="breadcrumb-item active">이사회사 관리</li>
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-12">
+
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">
+								<strong>Code Group</strong>
+							</h5>
+
+							<form>
+								<div class="row my-3">
+									<div class="col-2">
+										<select class="form-select"
+											aria-label="Default select example">
+											<option selected>N</option>
+											<option value="1">N</option>
+											<option value="2">Y</option>
+										</select>
+									</div>
+									<div class="col-2">
+										<select class="form-select"
+											aria-label="Default select example">
+											<option selected>Y</option>
+											<option value="1">N</option>
+											<option value="2">Y</option>
+										</select>
+									</div>
+									<div class="col-2">
+										<select class="form-select"
+											aria-label="Default select example">
+											<option selected>날짜</option>
+											<option value="1">날짜</option>
+											<option value="2">등록일</option>
+											<option value="3">수정일</option>
+										</select>
+									</div>
+									<div class="col-2">
+										<div class="form-floating-2">
+											<input type="text" class="form-control" id="floatingDate"
+												placeholder="날짜">
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="form-floating-2">
+											<input type="text" class="form-control" id="floatingDate"
+												placeholder="날짜">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-2">
+										<select class="form-select"
+											aria-label="Default select example">
+											<option selected>검색구분</option>
+											<option value="1">코드그룹 코드</option>
+											<option value="2">코드그룹 이름</option>
+											<option value="3">코드그룹 이름(영문)</option>
+										</select>
+									</div>
+									<div class="col-2">
+										<div class="form-floating-2">
+											<input type="search" class="form-control" id="floatingSearch"
+												placeholder="검색어">
+										</div>
+									</div>
+									<div class="col">
+										<button type="button"
+											class="btn btn-light btn btn-outline-dark">
+											<i class="fa-solid fa-magnifying-glass"></i>
+										</button>
+										<button type="button"
+											class="btn btn-light btn btn-outline-dark">
+											<i class="fa-solid fa-rotate-right"></i>
+										</button>
+									</div>
+								</div>
+							</form>
+
+
+							<!-- Table with stripped rows -->
+							<div>
+								<div class="row" style="margin-top: 2%;">
+									<div class="col">
+										<strong>Total:6</strong>
+									</div>
+									<div class="col-2">
+										<select class="form-select"
+											aria-label="Default select example">
+											<option selected>5</option>
+											<option value="1">10</option>
+											<option value="2">15</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<table class="table" style="text-align: center;">
+											<thead>
+												<tr>
+													<th><input class="form-check-input" type="checkbox"
+														id="checkboxNoLabel" value="" aria-label="..."></th>
+													<th>#</th>
+													<th>회사이름</th>
+													<th>이사유형</th>
+													<th>서비스지역</th>
+													<th>회사주소</th>
+													<th>회사전화번호</th>
+													<th>계약날짜</th>
+													<th>등록일</th>
+													<th>수정일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><input class="form-check-input" type="checkbox"
+														id="checkboxNoLabel" value="" aria-label="..."></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item"><a class="page-link" href="#"
+													aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+												</a></li>
+												<li class="page-item"><a class="page-link" href="#">1</a></li>
+												<li class="page-item"><a class="page-link" href="#">2</a></li>
+												<li class="page-item"><a class="page-link" href="#">3</a></li>
+												<li class="page-item"><a class="page-link" href="#"
+													aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												</a></li>
+											</ul>
+										</nav>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col" style="text-align: right;">
+										<div>
+											<a href="./tables-codeGroup-create.html" type="button"
+												class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+											<button type="button" class="btn btn-success">
+												<i class="fa-solid fa-wrench"></i>
+											</button>
+											<button type="button" class="btn btn-danger">
+												<i class="fa-solid fa-trash"></i>
+											</button>
+											<button type="button" class="btn btn-secondary">
+												<i class="fa-solid fa-circle-info"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End Table with stripped rows -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<!-- End #main -->
+
+
+
+	<div th:replace="~{xdm/include/footer :: footer}"></div>
+
+
+	<a href="#"
+		class="back-to-top d-flex align-items-center justify-content-center"><i
+		class="bi bi-arrow-up-short"></i></a>
+
+	<div th:replace="~{xdm/include/script :: script}"></div>
+
+	<script type="text/javascript">
+		
+	</script>
+
+</body>
+
+
+
+</html>

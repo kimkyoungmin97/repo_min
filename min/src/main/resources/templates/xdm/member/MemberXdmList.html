@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{xdm/include/head :: head}"></div>
+
+<body>
+
+<div th:replace="~{xdm/include/header :: header}"></div>
+<div th:replace="~{xdm/include/sidebar :: sidebar}"></div>
+  
+
+  
+    <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>유저 관리</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">유저 관리</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><strong>Code Group</strong></h5>
+
+              <form id="formList" method="get">
+              <input type="hidden" id="thisPage" name="thisPage" th:value="${vo.thisPage}">
+              <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}">
+                <div class="row my-3">
+                  <div class="col-2">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>N</option>
+                      <option value="1">N</option>
+                      <option value="2">Y</option>
+                    </select>
+                  </div>
+                  <div class="col-2">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Y</option>
+                      <option value="1">N</option>
+                      <option value="2">Y</option>
+                    </select>
+                  </div>
+                  <div class="col-2">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>날짜</option>
+                      <option value="1">날짜</option>
+                      <option value="2">등록일</option>
+                      <option value="3">수정일</option>
+                    </select>
+                  </div>
+                  <div class="col-2">
+                    <div class="form-floating-2">
+                      <input type="text" class="form-control" id="floatingDate" placeholder="날짜">
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="form-floating-2">
+                      <input type="text" class="form-control" id="floatingDate" placeholder="날짜">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>검색구분</option>
+                      <option value="1">코드그룹 코드</option>
+                      <option value="2">코드그룹 이름</option>
+                      <option value="3">코드그룹 이름(영문)</option>
+                    </select>
+                  </div>
+                  <div class="col-2">
+                    <div class="form-floating-2">
+                      <input type="search" class="form-control" id="floatingSearch" placeholder="검색어">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-rotate-right"></i></button>
+                  </div>
+                </div>
+              </form>
+                
+
+              <!-- Table with stripped rows -->
+                <div>
+                  <div class="row" style="margin-top: 2%;">
+                   <div class="col">
+                     <strong>Total:<span th:text="${vo.totalRows}"></span></strong>
+                   </div>
+                   <div class="col-2">
+                     <select class="form-select" aria-label="Default select example" th:attr="onchange=|showList(this.value)|">
+                       <option th:selected="${vo.rowNumToShow} == 5 ">5</option>
+                       <option th:if="${vo.totalRows} > 5" th:selected="${vo.rowNumToShow} == 10 ">10</option>
+                       <option th:if="${vo.totalRows} > 10" th:selected="${vo.rowNumToShow} == 15 ">15</option>
+                     
+                     </select>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col">
+                     <table class="table" style="text-align: center;">
+                      <thead>
+                        <tr>
+                          <th><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></th>
+                          <th>#</th>
+                          <th>이름</th>
+                          <th>성별</th>
+                          <th>생년월일</th>
+                          <th>통신사</th>
+                          <th>전화번호</th>
+                          <th>아이디</th>
+                          <th>비밀번호</th>
+                          <th>이메일</th>
+                          <th>닉네임</th>
+                          <th>주소</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       <tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn reveal-trigger position-static">
+                      		<td colspan="7" style="text-align:center;">
+                      		<p class="fs-0"> There is no data!</p>
+                      		</td>
+                      	</tr>
+                        <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
+                          <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" th:attr="onclick=|cheak()|" aria-label="..."></td>
+                          <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
+                          <td><a th:href="@{/memberxdmform(userSeq=${list.userSeq})}" th:text="${list.userName}"></a></td>
+						 <td th:text="${@codeService.selectOneCachedCode(list.genderCd)}"></td>
+                          <td th:text="${list.userBorn}"></td>
+                          <td th:text="${@codeService.selectOneCachedCode(list.telAgencyCd)}"></td>
+                          <td th:text="${list.userTel}"></td>
+                          <td th:text="${list.userId}"></td>
+                          <td th:text="${list.userPw}"></td>
+                          <td th:text="${list.userEmail}"></td>
+                          <td th:text="${list.userNickName}"></td>
+                          <td th:text="${list.userAddress}"></td>
+                        </tr>
+                        
+                      </tbody>
+                      </table>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col">
+                     <nav aria-label="Page navigation example">
+                       <ul class="pagination justify-content-center">
+	                         <li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;">
+							<a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|">
+								<i class="fa-solid fa-angle-left"></i>
+							</a>
+						</li>
+						<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
+							<a class="page-link"  th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
+						</li>
+						<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;">
+							<a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|">
+								<i class="fa-solid fa-angle-right"></i>
+							</a>
+						</li>
+                       </ul>
+                     </nav>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col" style="text-align: right;">
+                     <div>
+                       <button type="button" class="btn btn-success"><i class="fa-solid fa-wrench"></i></button>
+                       <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                       <button type="button" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></button>
+                    </div>
+                   </div>
+                 </div>
+              </div>
+              <!-- End Table with stripped rows -->
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+    
+
+  </main><!-- End #main -->
+  <div th:replace="~{xdm/include/footer :: footer}"></div>
+
+ 
+ 
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div th:replace="~{xdm/include/script :: script}"></div>
+
+  
+  <script type="text/javascript">
+  
+  
+   function goList(thisPage){ 
+	   formList.action ="/memberxdmlist";
+	   document.getElementById("thisPage").value=thisPage;
+	   document.getElementById("formList").submit(); 
+   }
+   function showList(value){
+	   formList.action ="/memberxdmlist";
+	   document.getElementById("rowNumToShow").value=value;
+	   document.getElementById("formList").submit(); 
+	   
+   }
+   function cheak(){
+	   alert("체크!");
+   }
+   
+   
+  	
+  </script>
+
+</body>
+
+
+ 
+</html>
