@@ -7,6 +7,20 @@
 
 	<sql id="selectCommon">
 		FROM codegroup
+		WHERE 1=1
+			
+		 <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND ifcgDelNy = #{shDelNy}</if>
+<!-- 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->				
+        <choose>
+            <when test="shOption == 1">AND ifcgSeq = #{shValue}</when>
+            <when test="shOption == 2">AND ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
 	</sql>
 	
 	<select id="selectOneCount" resultType="Integer">
@@ -18,10 +32,11 @@
 	SELECT 
 			ifcgSeq,
 			ifcgDelNy,
+			ifcgUseNy,
 		    ifcgName,
 		    registrationDate,
 		    modificationDate,
-		    (select count(aa.ifcdSeq) from code aa where 1=1 and aa.ifcdDelNy = 1 and aa.codeGroup_ifcgSeq = ifcgSeq) as xifcdSeqCount
+		    (select count(aa.ifcdSeq) from code aa where 1=1 and aa.ifcdDelNy = 0 and aa.codeGroup_ifcgSeq = ifcgSeq) as xifcdSeqCount
 		<include refid="selectCommon"/>
 		ORDER BY ifcgSeq DESC
 		LIMIT #{startRnumForMysql},#{rowNumToShow} 
@@ -39,6 +54,7 @@
 			#{ifcgName}
 		
 		)		
+		<include refid="selectCommon"/>
 		
 		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
 			SELECT last_insert_id()

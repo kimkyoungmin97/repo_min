@@ -13,6 +13,15 @@ public class MemberDto {
 	 private String userNickName;
 	 private String userAddress;
 	 private Integer userDelNy;
+	 
+	 // code
+	 private String ifcdName;
+	public String getIfcdName() {
+		return ifcdName;
+	}
+	public void setIfcdName(String ifcdName) {
+		this.ifcdName = ifcdName;
+	}
 	public Integer getUserDelNy() {
 		return userDelNy;
 	}

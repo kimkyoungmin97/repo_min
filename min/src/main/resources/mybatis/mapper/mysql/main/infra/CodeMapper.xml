@@ -5,7 +5,22 @@
 <resultMap id="resultMapObj" type="com.a5a5lab.module.code.CodeDto"></resultMap>
 
 <sql id="selectCommon">
-		FROM code AS a
+		FROM code AS a 
+		left join codegroup AS b ON b.ifcgSeq = a.codeGroup_ifcgSeq
+		WHERE 1=1
+		 <if test="shUseNy != null and !shUseNy.equals('')">AND a.ifcdUseNy = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.ifcdDelNy = #{shDelNy}</if>
+<!-- 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->				
+        <choose>
+            <when test="shOption == 1">AND b.ifcgSeq = #{shValue}</when>
+            <when test="shOption == 2">AND b.ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND a.ifcdName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
 		
 </sql>
 	
@@ -18,12 +33,12 @@
 	select 
 		a.ifcdSeq,
 	    a.ifcdDelNy,
+	    a.ifcdUseNy,
 	    b.ifcgSeq, 
 	    b.ifcgName, 
 	    a.ifcdName
     
 	<include refid="selectCommon"/>
-	    left join codegroup AS b ON b.ifcgSeq = a.codeGroup_ifcgSeq
 	ORDER BY a.ifcdSeq DESC
 	LIMIT #{startRnumForMysql},#{rowNumToShow} 
 	    
@@ -45,6 +60,7 @@
 		#{ifcgSeq}
 	)
 	
+	
 </insert>
 
 <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
@@ -56,7 +72,7 @@
 			code 
 			
 		WHERE 1=1
-			AND ifcdDelNy = 1
+			AND ifcdDelNy = 0
 		   
    </select>
 

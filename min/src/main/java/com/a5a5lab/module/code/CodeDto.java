@@ -7,6 +7,8 @@ public class CodeDto {
 	
 	private String ifcdSeq;
 	private String ifcdName;
+	private Integer ifcdUseNy;
+
 	private Integer ifcdDelNy;
 	private Integer codeGroup_ifcgSeq;
 	
@@ -14,6 +16,12 @@ public class CodeDto {
 	private String ifcgSeq;
 	private String ifcgName;
 //	------
+	public Integer getIfcdUseNy() {
+		return ifcdUseNy;
+	}
+	public void setIfcdUseNy(Integer ifcdUseNy) {
+		this.ifcdUseNy = ifcdUseNy;
+	}
 	public String getIfcdSeq() {
 		return ifcdSeq;
 	}

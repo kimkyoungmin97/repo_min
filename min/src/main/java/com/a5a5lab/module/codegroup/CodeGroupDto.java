@@ -3,10 +3,17 @@ package com.a5a5lab.module.codegroup;
 public class CodeGroupDto {
 	private String ifcgSeq;
 	private int ifcgDelNy;
+	private int ifcgUseNy;
 	private String ifcgName;
 	private String registrationDate;
 	private String modificationDate;
 	private int xifcdSeqCount;
+	public int getIfcgUseNy() {
+		return ifcgUseNy;
+	}
+	public void setIfcgUseNy(int ifcgUseNy) {
+		this.ifcgUseNy = ifcgUseNy;
+	}
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}

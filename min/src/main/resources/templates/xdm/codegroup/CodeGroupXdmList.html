@@ -36,55 +36,53 @@
 					
                 <div class="row my-3">
                   <div class="col-2">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>N</option>
-                      <option value="1">N</option>
-                      <option value="2">Y</option>
+                    <select class="form-select" aria-label="Default select example" id="shDelNy" name="shDelNy">
+	                 	<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
+						<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+						<option value="0" th:selected="${vo.shDelNy == 0}">N</option>     
                     </select>
                   </div>
                   <div class="col-2">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Y</option>
-                      <option value="1">N</option>
-                      <option value="2">Y</option>
+                    <select class="form-select" aria-label="Default select example" id="shUseNy" name="shUseNy">
+                      	<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
+						<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
+						<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
                     </select>
                   </div>
                   <div class="col-2">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>날짜</option>
-                      <option value="1">날짜</option>
-                      <option value="2">등록일</option>
-                      <option value="3">수정일</option>
+                    <select class="form-select" aria-label="Default select example" id="shOptionDate" name="shOptionDate">
+                     	<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
+						<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
+						<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
                     </select>
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2">
-                      <input type="text" class="form-control" id="floatingDate" placeholder="날짜">
+                      <input type="text" class="form-control" id="shDateStart" name="shDateStart">
                     </div>
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2">
-                      <input type="text" class="form-control" id="floatingDate" placeholder="날짜">
+                      <input type="text" class="form-control" id="shDateEnd" name="shDateEnd">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-2">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>검색구분</option>
-                      <option value="1">코드그룹 코드</option>
-                      <option value="2">코드그룹 이름</option>
-                      <option value="3">코드그룹 이름(영문)</option>
+                    <select class="form-select" aria-label="Default select example" id="shOption" name="shOption">
+                      		<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+							<option value="1" th:selected="${vo.shOption == 1}">코드그룹 코드</option>
+							<option value="2" th:selected="${vo.shOption == 2}">코드그룹 이름</option>
                     </select>
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2">
-                      <input type="search" class="form-control" id="floatingSearch" placeholder="검색어">
+                      <input type="search" class="form-control" id="shValue" name="shValue" placeholder="검색어" th:value="${vo.shValue}">
                     </div>
                   </div>
                   <div class="col">
-                    <button type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button type="button" class="btn btn-light btn btn-outline-dark" th:attr="onclick=|goList(1)|"><i class="fa-solid fa-rotate-right"></i></button>
+                    <button type="button" class="btn btn-light btn btn-outline-dark" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="button" class="btn btn-light btn btn-outline-dark" id="btnReload"><i class="fa-solid fa-rotate-right"></i></button>
                   </div>
                 </div>
               
@@ -97,8 +95,8 @@
                    <div class="col-2">
                      <select class="form-select" aria-label="Default select example" th:attr="onchange=|showList(this.value)|">
 						<option th:selected="${vo.rowNumToShow} == '5'">5</option>
-						<option th:selected="${vo.rowNumToShow} == '10'">10</option>
-						<option th:selected="${vo.rowNumToShow} == '15'">15</option>
+						<option th:if="${vo.totalRows} > 5" th:selected="${vo.rowNumToShow} == '10'">10</option>
+						<option th:if="${vo.totalRows} > 10" th:selected="${vo.rowNumToShow} == '15'">15</option>
                      </select>
                    </div>
                  </div>
@@ -130,7 +128,7 @@
                           <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
                           <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
                           <td th:text="${list.ifcgSeq}"></td>
-                          <td th:text="${list.ifcgDelNy}"></td>
+                          <td th:text="${list.ifcgUseNy}"></td>
                           <td th:text="${list.ifcgName}"></td>
                           <td th:text="${list.xifcdSeqCount}"></td>
                           <td th:text="${list.registrationDate}"></td>
@@ -192,6 +190,8 @@
  <div th:replace="~{xdm/include/script :: script}"></div>
   
   <script type="text/javascript">
+  	
+  let formList = document.getElementById("formList");
   
   
    function goList(thisPage){ 
@@ -205,6 +205,19 @@
 	   document.getElementById("formList").submit(); 
 	   
    }
+   document.getElementById("btnSearch").onclick=function() {
+	   formList.action="/codegroupxdmlist";
+	   document.getElementById("formList").submit(); 
+	   
+   }
+   document.getElementById("btnReload").onclick=function() {
+	   formList.action="/codegroupxdmlist";
+	   document.getElementById("shOption").value="";
+	   document.getElementById("shValue").value="";
+	   document.getElementById("formList").submit(); 
+	   
+   }
+ 
    
    
   	

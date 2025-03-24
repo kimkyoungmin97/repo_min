@@ -4,6 +4,7 @@ package com.a5a5lab.module.codegroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -15,12 +16,14 @@ public class CodeGroupController {
 	
 	
 	@RequestMapping(value="/codegroupxdmlist")
-	public String codegroupxdmlist(Model model,  CodeGroupVo vo) {
+	public String codegroupxdmlist(Model model, @ModelAttribute("vo") CodeGroupVo vo) {
+		
 		
 	    vo.setParamsPaging(codeGroupService.selectOneCount(vo));
-		model.addAttribute("vo", vo);
-		model.addAttribute("list", codeGroupService.selectList(vo));
-		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", codeGroupService.selectList(vo));
+		}
+	
 		
 		return "/xdm/codegroup/CodeGroupXdmList";
 	}

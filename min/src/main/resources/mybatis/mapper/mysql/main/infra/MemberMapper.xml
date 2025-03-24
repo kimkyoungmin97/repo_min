@@ -5,10 +5,25 @@
 <resultMap id="resultMapObj" type="com.a5a5lab.module.member.MemberDto"></resultMap>
 <sql id="selectCommon">
 	FROM
-		user
+		user AS a
+	left join code AS b ON a.genderCd =b.ifcdSeq 
 	WHERE
 		1=1
-		AND userDelNy= 1
+        <if test="shDelNy != null and !shDelNy.equals('')">AND userDelNy = #{shDelNy}</if>
+				
+<!-- 				<choose> -->
+<!-- 					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+<!-- 					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+<!-- 				</choose> -->
+				
+		        <choose>
+		            <when test="shOption == 1">AND userName LIKE CONCAT('%',#{shValue},'%')</when>
+		            <when test="shOption == 2">AND userBorn LIKE CONCAT('%',#{shValue},'%')</when>
+		            <when test="shOption == 3">AND userTel LIKE CONCAT('%',#{shValue},'%')</when>
+		            <when test="shOption == 4">AND userId LIKE CONCAT('%',#{shValue},'%')</when>
+		            <when test="shOption == 5">AND userEmail LIKE CONCAT('%',#{shValue},'%')</when>
+		            <when test="shOption == 6">AND userNickName LIKE CONCAT('%',#{shValue},'%')</when>
+		        </choose>
 </sql>
 <select id="selectOneCount">
 	SELECT 
@@ -16,7 +31,7 @@
 	<include refid="selectCommon"/>
 </select>
 <select id="selectList" resultMap="resultMapObj">
-	SELECT
+	SELECT 
 		userSeq,
 		userName,
 		genderCd,
