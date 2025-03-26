@@ -20,6 +20,12 @@ public class CodeGroupService {
 	public int selectOneCount(CodeGroupVo vo) {
 		return codeGroupDao.selectOneCount(vo);
 	}
+	public CodeGroupDto selectOne(CodeGroupVo vo){
+		return codeGroupDao.selectOne(vo);
+	}
+	public int update(CodeGroupDto codeGroupDto) {
+		return codeGroupDao.update(codeGroupDto);
+	}
 	
 	
 

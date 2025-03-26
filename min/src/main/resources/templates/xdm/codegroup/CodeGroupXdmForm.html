@@ -22,7 +22,10 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-     <form  id="form">
+     <form  id="form" method="post">
+     <input type="hidden" name="ifcgSeq" th:value="${vo.ifcgSeq}">
+<!--      <input type="hidden" name="shUseNy" th:value="${vo.shUseNy}"> -->
+
       <div class="card">
         <div class="card-header">
           <h4 style="color: black;"><strong>기본정보</strong></h4>
@@ -31,20 +34,20 @@
             <div class="row">
               <div class="col-3">
                 <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">코드그룹 코드<span style="color: crimson;">*</span></label>
-                  <input class="form-control" type="text" placeholder="자동생성" aria-label="Disabled input example" disabled>
+                  <label for="ifcgSeq" class="form-label">코드그룹 코드<span style="color: crimson;">*</span></label>
+                  <input class="form-control" id="ifcgSeq" name="ifcgSeq" th:value="${item?.ifcgSeq}"  type="text" placeholder="자동생성" aria-label="Disabled input example" disabled>
                 </div>
               </div>
               <div class="col-3">
                 <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">사용여부<span style="color: crimson;">*</span></label>
-                  <input class="form-control" type="text" placeholder="0" aria-label="Disabled input example" disabled>
+                  <label for="ifcgUseNy" class="form-label">사용여부<span style="color: crimson;">*</span></label>
+                  <input class="form-control" id="ifcgUseNy" name="ifcgUseNy" th:value="${item?.ifcgUseNy}"  type="text"  aria-label="Disabled input example" >
                 </div>
               </div>
               <div class="col-3">
                 <div class="mb-3">
                   <label for="ifcgName" class="form-label">코드그룹 이름<span style="color: crimson;">*</span></label>
-                  <input class="form-control" type="text" name="ifcgName" id="ifcgName">
+                  <input class="form-control" type="text" name="ifcgName" id="ifcgName" th:value="${item?.ifcgName}">
                 </div>
               </div>
             </div>
@@ -113,17 +116,32 @@
   	document.getElementById("btnSave").onclick = function(){
   		let form=document.getElementById("form");
 		let name=document.getElementById("ifcgName");
-		let nameValue= name.value;
-  		form.action="/codegroup/codeGroupXdmInst";
+  		let seq = document.querySelector("input[name=ifcgSeq]");
   		
-		if(nameValue == ""){
-			document.getElementById("basicModal").style.display='block';
-			return false;
-		}else{
-			form.submit();			
-			
-		}	
-	}
+		if(seq.value == "0" || seq.value == "") {
+			//insert
+			if(name.value =="0" || name.value ==""){
+	 			document.getElementById("basicModal").style.display='block';
+	 			return false;
+			}else{
+				form.action ="/codegroup/codeGroupXdmInst";
+				form.submit();
+	 				
+	 		}
+				
+		} else{
+			//update
+			if(name.value =="0" || name.value ==""){
+	 			document.getElementById("basicModal").style.display='block';
+	 			return false;
+			}else{
+				form.action ="/codegroup/codeGroupXdmUpdt";
+				form.submit();
+	 				
+	 		}
+				
+			}
+  		}	
   
 	document.getElementById("closeModal").onclick=function(){
 		let name=document.getElementById("ifcgName");

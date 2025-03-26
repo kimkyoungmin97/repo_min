@@ -9,16 +9,19 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 	
 	@Autowired
-	MemberDao MemberDao;
+	MemberDao memberDao;
 	
 	public List<MemberDto> selectList(MemberVo vo){
-		return MemberDao.selectList(vo);
+		return memberDao.selectList(vo);
 	}
 	public int selectOneCount(MemberVo vo){
-		return MemberDao.selectOneCount(vo);
+		return memberDao.selectOneCount(vo);
 	}
 	public MemberDto selectOne(MemberDto memberDto){
-		return MemberDao.selectOne(memberDto);
+		return memberDao.selectOne(memberDto);
+	}
+	public MemberDto login(MemberVo vo) {
+		return memberDao.login(vo);
 	}
 
 }

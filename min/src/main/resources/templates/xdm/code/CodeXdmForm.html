@@ -27,14 +27,16 @@
           <h4 style="color: black;"><strong>기본정보</strong></h4>
         </div>
         <div class="card-body">
-              <form id="formList"   novalidate  >
+              <form id="formList" method="get"   novalidate  >
+              <input type="hidden" name="ifcdSeq" th:value="${vo.ifcdSeq}">
                 <div class="row">
                   <div class="col-3">
                     <div class="mb-3">
                       <label for="ifcgSeq" class="form-label">코드그룹 이름<span style="color: crimson;">*</span></label>
-                      <select class="form-select"  aria-label="Default select example" id="ifcgSeq" name="ifcgSeq" >
+                      <select class="form-select"  aria-label="Default select example" id="ifcgSeq" name="ifcgSeq">
                         <option selected value="" >선택하세요</option>
-                        <option th:each="list :${list}"  th:text="${list.ifcgName}" th:value = "${list.ifcgSeq}"></option>
+                        <option  th:selected="${list.ifcgSeq == item.ifcgSeq}" th:each="list :${list}"  th:text="${list.ifcgName}" th:value = "${list.ifcgSeq}"></option>
+<!--                         <option th:if="${item.ifcgSeq ==null}" th:each="list :${list}"  th:text="${list.ifcgName}" th:value = "${list.ifcgSeq}"></option> -->
                       </select>
                       <div class="invalid-feedback" id="ifcgSeqError"></div>
                     </div>
@@ -44,7 +46,7 @@
                   <div class="col-3">
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">코드<span style="color: crimson;">*</span></label>
-                      <input class="form-control" type="text" placeholder="자동생성" aria-label="Disabled input example" disabled>
+                      <input class="form-control" type="text" id="ifcdSeq" name="ifcdSeq" th:value="${item?.ifcdSeq}" placeholder="자동생성" aria-label="Disabled input example" disabled>
                     </div>
                   </div>
                   <div class="col-3">
@@ -56,7 +58,7 @@
                   <div class="col-3">
                     <div class="mb-3">
                       <label for="ifcdName" class="form-label ">코드이름<span style="color: crimson;">*</span></label>
-                      <input type="text" class="form-control " id="ifcdName" name="ifcdName" >
+                      <input type="text" class="form-control " id="ifcdName" name="ifcdName" th:value="${item?.ifcdName}" >
                       <div  class="invalid-feedback" id="ifcdNameError"></div>
 					 
                     </div>
@@ -85,7 +87,7 @@
           
           <div class="row" style="margin-top: 2%;">
             <div class="col">
-              <a href="redirect:/codegroupxdmlist" type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-list"></i></a>
+              <a href="/codeXdmList" type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-list"></i></a>
             </div>
             <div class="col" style="text-align: right;">
               <button id="btnSave" type="button" class="btn btn-primary" ><i class="fa-solid fa-file-import"></i></button>
@@ -107,11 +109,21 @@
  
   <script type="text/javascript">
   	document.getElementById("btnSave").onclick = function(){
-		let form = document.getElementById("formList");
-  		let name = document.getElementById("ifcdName");
-		let nameValue = name.value;
-		let seq = document.getElementById("ifcgSeq");
-		let seqValue = seq.value;
+//   		let seq = document.querySelector("input[name=ifcdSeq]");
+//   		if(seq.value == "0" || seq.value == "") {
+//   			form.action = goUrlXdmInst;
+//   			form.submit();
+//   		} else {
+//   			form.action = goUrlXdmUpdt;
+//   			form.submit();
+//   		}
+  		
+  		
+// 		let form = document.getElementById("formList");
+//   		let name = document.getElementById("ifcdName");
+// 		let nameValue = name.value;
+// 		let seq = document.getElementById("ifcgSeq");
+// 		let seqValue = seq.value;
 		
 		form.action="/codeXdmInst";
 		

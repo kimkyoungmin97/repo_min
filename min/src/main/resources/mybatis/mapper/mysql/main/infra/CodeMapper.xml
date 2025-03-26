@@ -36,20 +36,35 @@
 	    a.ifcdUseNy,
 	    b.ifcgSeq, 
 	    b.ifcgName, 
-	    a.ifcdName
+	    a.ifcdName,
+	    a.codeGroup_ifcgSeq
     
 	<include refid="selectCommon"/>
 	ORDER BY a.ifcdSeq DESC
 	LIMIT #{startRnumForMysql},#{rowNumToShow} 
 	    
 </select>
-<select id="codeList" resultMap="resultMapObj">
+<select id="codeList">
 	select
 		ifcgSeq,
 	    ifcgName
 	from
 		codegroup
-		
+</select>
+<select id="selectOne" resultMap="resultMapObj">
+	SELECT
+		a.ifcdSeq,
+		a.ifcdName,
+		a.codeGroup_ifcgSeq,
+		a.ifcdUseNy,
+		a.ifcdDelNy,
+		b.ifcgSeq,
+		b.ifcgName
+	FROM
+		code AS a
+	left join codegroup As b ON b.ifcgSeq = a.codeGroup_ifcgSeq
+	WHERE
+		a.ifcdSeq=#{ifcdSeq}
 </select>
 <insert id="insert">
 	INSERT INTO code(
@@ -59,9 +74,15 @@
 		#{ifcdName},
 		#{ifcgSeq}
 	)
-	
-	
 </insert>
+<update id="update">
+	UPDATE code
+	SET
+		ifcdName=#{ifcdName}
+	WHERE
+		ifcdSeq=#{ifcdSeq}
+		
+</update>
 
 <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 

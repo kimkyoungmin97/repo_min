@@ -42,19 +42,41 @@
 		LIMIT #{startRnumForMysql},#{rowNumToShow} 
 		
 	</select>
+	<select id="selectOne">
+		select
+			ifcgSeq,
+	        ifcgDelNy,
+	        ifcgName,
+	        ifcgUseNy
+		FROM
+			codegroup
+		WHERE
+			1=1
+		AND ifcgSeq = #{ifcgSeq}
+	</select>
+	
+	<update id="update">
+		UPDATE codegroup 
+	    SET
+			ifcgName=#{ifcgName},
+	        ifcgUseNy=#{ifcgUseNy}
+		WHERE
+			ifcgSeq=#{ifcgSeq}
+	</update>
 	
 	
 	<insert id="insert">
 		INSERT INTO codegroup (
 		
+			ifcgUseNy,
 			ifcgName	
 					
 		)VALUES(
-			
+			#{ifcgUseNy},
 			#{ifcgName}
-		
 		)		
-		<include refid="selectCommon"/>
+	
+		
 		
 		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
 			SELECT last_insert_id()

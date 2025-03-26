@@ -20,11 +20,17 @@ public class CodeService {
 	public List<CodeDto> codeList(CodeDto codeDto) {
 		return codeDao.codeList(codeDto);
 	}
+	public CodeDto selectOne(CodeDto codeDto) {
+		return codeDao.selectOne(codeDto);
+	}
 	public int selectOneCount(CodeVo vo) {
 		return codeDao.selectOneCount(vo);
 	}
 	public int insert(CodeDto codeDto) {
 		return codeDao.insert(codeDto);
+	}
+	public int update(CodeDto codeDto) {
+		return codeDao.update(codeDto);
 	}
 	
 //	------

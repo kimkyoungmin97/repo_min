@@ -10,7 +10,7 @@ public class CodeDto {
 	private Integer ifcdUseNy;
 
 	private Integer ifcdDelNy;
-	private Integer codeGroup_ifcgSeq;
+	private String codeGroup_ifcgSeq;
 	
 //	codegroup
 	private String ifcgSeq;
@@ -40,10 +40,10 @@ public class CodeDto {
 	public void setIfcdDelNy(Integer ifcdDelNy) {
 		this.ifcdDelNy = ifcdDelNy;
 	}
-	public Integer getCodeGroup_ifcgSeq() {
+	public String getCodeGroup_ifcgSeq() {
 		return codeGroup_ifcgSeq;
 	}
-	public void setCodeGroup_ifcgSeq(Integer codeGroup_ifcgSeq) {
+	public void setCodeGroup_ifcgSeq(String codeGroup_ifcgSeq) {
 		this.codeGroup_ifcgSeq = codeGroup_ifcgSeq;
 	}
 	public String getIfcgSeq() {

@@ -30,9 +30,10 @@
             <div class="card-body">
               <h5 class="card-title"><strong>Code Group</strong></h5>
 
-              <form  name="formList"  id="formList" method="get" autocomplete="OFF">
+              <form  name="formList"  id="formList" method="post" autocomplete="OFF">
               		<input type="hidden" id="thisPage" name="thisPage"  th:value="${vo.thisPage}" default="1"/>
 					<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
+					<input type="hidden" name="ifcgSeq">
 					
                 <div class="row my-3">
                   <div class="col-2">
@@ -129,7 +130,7 @@
                           <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
                           <td th:text="${list.ifcgSeq}"></td>
                           <td th:text="${list.ifcgUseNy}"></td>
-                          <td th:text="${list.ifcgName}"></td>
+                          <td><a href="javascript:void(0);" th:text="${list.ifcgName}" th:attr="onclick=|goForm('${list.ifcgSeq}')|" ></a></td>
                           <td th:text="${list.xifcdSeqCount}"></td>
                           <td th:text="${list.registrationDate}"></td>
                           <td th:text="${list.modificationDate}"></td>
@@ -162,7 +163,8 @@
                  <div class="row">
                    <div class="col" style="text-align: right;">
                      <div>
-                       <a href="/codegroup/codegroupxdmform" type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+                       
+                       <button type="button" id="btnForm" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
                        <button type="button" class="btn btn-success"><i class="fa-solid fa-wrench"></i></button>
                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                        <button type="button" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></button>
@@ -192,6 +194,7 @@
   <script type="text/javascript">
   	
   let formList = document.getElementById("formList");
+  let seq = document.querySelector("input[name=ifcgSeq]");	
   
   
    function goList(thisPage){ 
@@ -217,6 +220,16 @@
 	   document.getElementById("formList").submit(); 
 	   
    }
+   document.getElementById("btnForm").onclick = function () {
+	    goForm(0);
+	}
+
+
+	goForm = function (keyValue) {
+	    seq.value = keyValue;
+	    formList.action ="/codegroup/codegroupxdmform";
+	    formList.submit();
+	}
  
    
    

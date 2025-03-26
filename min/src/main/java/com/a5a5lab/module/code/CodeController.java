@@ -20,13 +20,28 @@ public class CodeController {
 		return "/xdm/code/CodeXdmList";
 	}
 	@RequestMapping(value="/codeXdmForm")
-	public String codeXdmForm(Model model, CodeDto codeDto) {
-		model.addAttribute("list", codeService.codeList(codeDto));
+	public String codeXdmForm(Model model, CodeDto codeDto, @ModelAttribute("vo") CodeVo vo) {
+		if (vo.getIfcdSeq().equals("0") || vo.getIfcdSeq().equals("")) {
+//			insert mode
+			
+		} else {
+//			update mode
+			model.addAttribute("list", codeService.codeList(codeDto));
+			model.addAttribute("item", codeService.selectOne(codeDto));
+//			model.addAttribute("list", codeService.selectList(cvo));
+			
+		}
+		
 		return "xdm/code/CodeXdmForm";
 	}
 	@RequestMapping(value="/codeXdmInst")
 	public String codeXdmInst(CodeDto codeDto) {
 		codeService.insert(codeDto);
+		return "redirect:/codeXdmList";
+	}
+	@RequestMapping(value="/codeXdmUpdt")
+	public String codeXdmUpdt(CodeDto codeDto) {
+		codeService.update(codeDto);
 		return "redirect:/codeXdmList";
 	}
 
