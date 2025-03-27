@@ -15,6 +15,8 @@ public interface CodeGroupDao {
 	public int selectOneCount(CodeGroupVo vo);
 	public CodeGroupDto selectOne(CodeGroupVo vo);
 	public int update(CodeGroupDto codeGroupDto);
+	public int ulete(CodeGroupDto codeGroupDto);
+	
 	
 	
 	

@@ -77,6 +77,7 @@
               </div>
               <div class="col" style="text-align: right;">
                 <button type="button" class="btn btn-primary" id="btnSave"><i class="fa-solid fa-file-import"></i></button>
+                 <button type="button" class="btn btn-danger" id="btnUlete"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -141,7 +142,7 @@
 	 		}
 				
 			}
-  		}	
+  	}	
   
 	document.getElementById("closeModal").onclick=function(){
 		let name=document.getElementById("ifcgName");
@@ -153,6 +154,12 @@
 		document.getElementById("basicModal").style.display='none';
 		name.focus();	
 	}
+	document.getElementById("btnUlete").onclick = function(){
+		document.getElementById("form").action="/codegroup/codeGroupXdmUlete";
+		document.getElementById("form").submit();
+		
+	}
+	
   </script>
 </body>
 

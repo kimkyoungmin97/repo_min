@@ -20,10 +20,13 @@ public class CodeController {
 		return "/xdm/code/CodeXdmList";
 	}
 	@RequestMapping(value="/codeXdmForm")
-	public String codeXdmForm(Model model, CodeDto codeDto, @ModelAttribute("vo") CodeVo vo) {
+	public String codeXdmForm(Model model, CodeDto codeDto, @ModelAttribute("vo") CodeVo vo) throws Exception{
 		if (vo.getIfcdSeq().equals("0") || vo.getIfcdSeq().equals("")) {
 //			insert mode
 			
+			model.addAttribute("listInst", codeService.codeList(codeDto));
+			model.addAttribute("item", codeService.selectOne(codeDto));
+
 		} else {
 //			update mode
 			model.addAttribute("list", codeService.codeList(codeDto));

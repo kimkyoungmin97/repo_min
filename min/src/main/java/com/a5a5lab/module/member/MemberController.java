@@ -1,7 +1,6 @@
 package com.a5a5lab.module.member;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
@@ -32,14 +33,24 @@ public class MemberController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/signinXdmProc")
-	public Map<String, Object> signinXdmProc(MemberDto dto) throws Exception {
+	public Map<String, Object> signinXdmProc(MemberDto dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		memberService.selectOne(dto);
-		if(memberService.selectOne(dto) != null) {
+		MemberDto rtMember = memberService.selectOne(dto);
+		if(rtMember != null) {
 			returnMap.put("rt","success");
+			httpSession.setAttribute("sessSeqXdm", rtMember.getUserSeq());
+			httpSession.setAttribute("sessIdXdm", rtMember.getUserId());
+			httpSession.setAttribute("sessNameXdm", rtMember.getUserName());
+			
 		} else {
 		
 		}
+//		System.out.println("dto.seq"+ dto.getUserSeq());
+//		System.out.println("dto.id"+ dto.getUserId());
+//		System.out.println("dto.name"+ dto.getUserName());
+		
+	
+		
 		return returnMap;
 	}
 	@ResponseBody

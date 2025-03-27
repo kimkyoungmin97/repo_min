@@ -74,14 +74,19 @@
 		)VALUES(
 			#{ifcgUseNy},
 			#{ifcgName}
-		)		
-	
-		
-		
+		)	
 		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<update id="ulete">
+		UPDATE codegroup
+		SET
+			ifcgDelNy=1
+		WHERE
+			ifcgSeq=#{ifcgSeq}
+	</update>	
 	
 	
 
