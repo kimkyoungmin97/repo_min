@@ -669,12 +669,11 @@
 			async: true 
 			,cache: false
 			,type: "post"
-			,url: "/signinXdmProc"
+			,url: "/signoutXdmProc"
 			,data: {}
 			,success: function(response) {
-				
 				if(response.rt == "success") {
-					alert("하");
+					location.href="/xdm/login"
 				} else {
 					// by pass
 				}

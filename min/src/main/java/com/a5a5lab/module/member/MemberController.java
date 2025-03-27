@@ -38,10 +38,18 @@ public class MemberController {
 		if(memberService.selectOne(dto) != null) {
 			returnMap.put("rt","success");
 		} else {
-			
-		}
 		
+		}
 		return returnMap;
 	}
+	@ResponseBody
+	@RequestMapping(value = "/signoutXdmProc")
+	public Map<String, Object> signoutXdmProc(MemberDto dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
+	
 
 }
