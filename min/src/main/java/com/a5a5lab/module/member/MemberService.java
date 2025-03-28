@@ -20,8 +20,5 @@ public class MemberService {
 	public MemberDto selectOne(MemberDto memberDto){
 		return memberDao.selectOne(memberDto);
 	}
-	public MemberDto login(MemberVo vo) {
-		return memberDao.login(vo);
-	}
 
 }

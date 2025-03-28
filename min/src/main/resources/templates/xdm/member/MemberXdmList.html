@@ -128,7 +128,7 @@
                         <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
                           <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" th:attr="onclick=|cheak()|" aria-label="..."></td>
                           <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                          <td><a th:href="@{/memberxdmform(userSeq=${list.userSeq})}" th:text="${list.userName}"></a></td>
+                          <td><a th:href="@{/memberXdmForm(userSeq=${list.userSeq})}" th:text="${list.userName}"></a></td>
 						 <td th:text="${@codeService.selectOneCachedCode(list.genderCd)}"></td>
                           <td th:text="${list.userBorn}"></td>
                           <td th:text="${@codeService.selectOneCachedCode(list.telAgencyCd)}"></td>
@@ -201,23 +201,23 @@
   
   
    function goList(thisPage){ 
-	   formList.action ="/memberxdmlist";
+	   formList.action ="/memberXdmList";
 	   document.getElementById("thisPage").value=thisPage;
 	   document.getElementById("formList").submit(); 
    }
    function showList(value){
-	   formList.action ="/memberxdmlist";
+	   formList.action ="/memberXdmList";
 	   document.getElementById("rowNumToShow").value=value;
 	   document.getElementById("formList").submit(); 
 	   
    }
    document.getElementById("btnSearch").onclick=function() {
-	   formList.action="/memberxdmlist";
+	   formList.action="/memberXdmList";
 	   document.getElementById("formList").submit(); 
 	   
    }
    document.getElementById("btnReload").onclick=function() {
-	   formList.action="/memberxdmlist";
+	   formList.action="/memberXdmList";
 	   document.getElementById("shOption").value="";
 	   document.getElementById("shValue").value="";
 	   document.getElementById("formList").submit(); 

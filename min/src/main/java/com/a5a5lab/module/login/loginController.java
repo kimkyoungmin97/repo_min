@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class loginController {
 	
 	
-	@RequestMapping(value="/xdm/login")
+	@RequestMapping(value="/loginXdm")
 	public String login() {
 		return "/xdm/login/LoginXdm";
 	}

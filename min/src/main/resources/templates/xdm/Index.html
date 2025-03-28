@@ -663,26 +663,7 @@
 
   <div th:replace="~{xdm/include/script :: script}"></div>
   
-  <script type="text/javascript">
-	$("#btnSignout").on("click", function(){
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			,url: "/signoutXdmProc"
-			,data: {}
-			,success: function(response) {
-				if(response.rt == "success") {
-					location.href="/xdm/login"
-				} else {
-					// by pass
-				}
-			}
-			
-		});
-	});
-  	
-  </script>
+  
 
 </body>
 

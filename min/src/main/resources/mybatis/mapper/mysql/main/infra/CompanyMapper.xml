@@ -4,6 +4,18 @@
 <mapper namespace="com.a5a5lab.module.company.CompanyDao">
 <resultMap id="resultMapObj" type="com.a5a5lab.module.company.CompanyDto"></resultMap>
 
+<sql id="selectCommon">
+	FROM
+		movingcompany
+	WHERE 1=1
+</sql>
+
+<select id="selectOneCount">
+	SELECT 
+		count(*)
+	<include refid="selectCommon"/>
+</select>
+
 <select id="selectList" resultMap="resultMapObj">
 	SELECT
 	  mcSeq,
@@ -23,8 +35,8 @@
 	  addPriceDistance,
 	  ladderTruckNy,
 	  mcDelNy
-	FROM
-		movingcompany
+	<include refid="selectCommon"/>		
+	
 
 </select>
 

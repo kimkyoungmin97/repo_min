@@ -69,17 +69,7 @@
 	 <if test="userId != null and !userId.equals('')"> AND userId = #{userId}</if>
 	 <if test="userPw != null and !userPw.equals('')"> AND userPw = #{userPw}</if>
 </select>
-<select id="login" resultMap="resultMapObj">
-	SELECT
-		userSeq,
-		userName,
-		userId,
-		userPw
-	FROM
-		user
-	WHERE 1=1
-	AND	userSeq=1
-</select>
+
 
 
 

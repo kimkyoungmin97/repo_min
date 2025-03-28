@@ -10,6 +10,6 @@ public interface MemberDao {
 	public List<MemberDto> selectList(MemberVo vo);
 	public int selectOneCount(MemberVo vo);
 	public MemberDto selectOne(MemberDto memberDto);
-	public MemberDto login(MemberVo vo);
+	
 
 }

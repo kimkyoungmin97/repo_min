@@ -73,7 +73,7 @@
             </div>
             <div class="row" style="margin-top: 2%;">
               <div class="col">
-                <a href="/codegroupxdmlist" type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-list"></i></a>
+                <a href="/codegroupXdmList" type="button" class="btn btn-light btn btn-outline-dark"><i class="fa-solid fa-list"></i></a>
               </div>
               <div class="col" style="text-align: right;">
                 <button type="button" class="btn btn-primary" id="btnSave"><i class="fa-solid fa-file-import"></i></button>
@@ -125,7 +125,7 @@
 	 			document.getElementById("basicModal").style.display='block';
 	 			return false;
 			}else{
-				form.action ="/codegroup/codeGroupXdmInst";
+				form.action ="/codeGroupXdmInst";
 				form.submit();
 	 				
 	 		}
@@ -136,7 +136,7 @@
 	 			document.getElementById("basicModal").style.display='block';
 	 			return false;
 			}else{
-				form.action ="/codegroup/codeGroupXdmUpdt";
+				form.action ="/codeGroupXdmUpdt";
 				form.submit();
 	 				
 	 		}
@@ -155,7 +155,7 @@
 		name.focus();	
 	}
 	document.getElementById("btnUlete").onclick = function(){
-		document.getElementById("form").action="/codegroup/codeGroupXdmUlete";
+		document.getElementById("form").action="/codeGroupXdmUlete";
 		document.getElementById("form").submit();
 		
 	}

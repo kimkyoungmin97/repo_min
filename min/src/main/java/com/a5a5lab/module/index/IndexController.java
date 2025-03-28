@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 	
-	@RequestMapping(value="/xdm/index")
+	@RequestMapping(value="/indexXdm")
 	public String index() {
-		return "/xdm/Index";
+		return "xdm/Index";
 	}
 }

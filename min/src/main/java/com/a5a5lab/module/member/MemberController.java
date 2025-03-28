@@ -18,7 +18,7 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value="/memberxdmlist")
+	@RequestMapping(value="/memberXdmList")
 	public String memberxdmlist(Model model, @ModelAttribute("vo") MemberVo vo) {
 		vo.setParamsPaging(memberService.selectOneCount(vo));
 		if (vo.getTotalRows() > 0) {
@@ -26,7 +26,7 @@ public class MemberController {
 		}
 		return"/xdm/member/MemberXdmList";
 	}
-	@RequestMapping(value="/memberxdmform")
+	@RequestMapping(value="/memberXdmForm")
 	public String memberxdmform(Model model, MemberDto memberDto) {
 		model.addAttribute("item", memberService.selectOne(memberDto));
 		return "/xdm/member/MemberXdmForm";
@@ -40,14 +40,16 @@ public class MemberController {
 			returnMap.put("rt","success");
 			httpSession.setAttribute("sessSeqXdm", rtMember.getUserSeq());
 			httpSession.setAttribute("sessIdXdm", rtMember.getUserId());
-			httpSession.setAttribute("sessNameXdm", rtMember.getUserName());
-			
+			httpSession.setAttribute("sessNameXdm", rtMember.getUserName());	
 		} else {
 		
 		}
 //		System.out.println("dto.seq"+ dto.getUserSeq());
 //		System.out.println("dto.id"+ dto.getUserId());
 //		System.out.println("dto.name"+ dto.getUserName());
+//		System.out.println(httpSession.getAttribute("sessSeqXdm"));
+//		System.out.println(httpSession.getAttribute("sessIdXdm"));
+//		System.out.println(httpSession.getAttribute("sessNameXdm"));
 		
 	
 		
@@ -55,9 +57,16 @@ public class MemberController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/signoutXdmProc")
-	public Map<String, Object> signoutXdmProc(MemberDto dto) throws Exception {
+	public Map<String, Object> signoutXdmProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
+		httpSession.setAttribute("sessSeqXdm", null);
+		httpSession.setAttribute("sessIdXdm", null);
+		httpSession.setAttribute("sessNameXdm", null);
 		returnMap.put("rt", "success");
+		
+		System.out.println("시퀀스" + httpSession.getAttribute("sessSeqXdm"));
+		System.out.println("아이디"+httpSession.getAttribute("sessIdXdm"));
+		System.out.println("이름"+httpSession.getAttribute("sessNameXdm"));
 		return returnMap;
 	}
 	
