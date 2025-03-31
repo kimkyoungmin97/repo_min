@@ -26,17 +26,19 @@ public class CodeGroupController {
 	@RequestMapping(value="/codegroupXdmList")
 	public String codegroupxdmlist(Model model, @ModelAttribute("vo") CodeGroupVo vo,HttpSession httpSession) {
 		
-		
+		if(vo.getShDateStart()==null || vo.getShDateEnd()==null) {
+			System.out.println("뭔가 이상하다");
+		}
 	    vo.setParamsPaging(codeGroupService.selectOneCount(vo));
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", codeGroupService.selectList(vo));
 		}
-		System.out.println("시퀀스" + httpSession.getAttribute("sessSeqXdm"));
+		
 		return "xdm/codegroup/CodeGroupXdmList";
 	}
 
 	
-	@RequestMapping(value="/codegroupXdmform")
+	@RequestMapping(value="/codegroupXdmForm")
 	
 	public String codegroupxdmform(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception {
 		if (vo.getIfcgSeq().equals("0") || vo.getIfcgSeq().equals("")) {
@@ -50,7 +52,7 @@ public class CodeGroupController {
 		}
 		
 		
-		return "/xdm/codegroup/CodeGroupXdmForm";
+		return "xdm/codegroup/CodeGroupXdmForm";
 	}
 	@RequestMapping(value="/codeGroupXdmInst")
 	public String codeGroupXdmInst( CodeGroupDto codeGroupDto) {

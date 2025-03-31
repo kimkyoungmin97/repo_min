@@ -37,7 +37,9 @@
 	    b.ifcgSeq, 
 	    b.ifcgName, 
 	    a.ifcdName,
-	    a.codeGroup_ifcgSeq
+	    a.codeGroup_ifcgSeq,
+	    ifcdRegistrationDate,
+		ifcdModificationDate
     
 	<include refid="selectCommon"/>
 	ORDER BY a.ifcdSeq DESC
@@ -69,16 +71,21 @@
 <insert id="insert">
 	INSERT INTO code(
 		ifcdName,
-		codeGroup_ifcgSeq
+		codeGroup_ifcgSeq,
+		ifcdRegistrationDate,
+		ifcdModificationDate
 	)VALUES(
 		#{ifcdName},
-		#{ifcgSeq}
+		#{ifcgSeq},
+		now(),
+		now()
 	)
 </insert>
 <update id="update">
 	UPDATE code
 	SET
-		ifcdName=#{ifcdName}
+		ifcdName=#{ifcdName},
+		ifcdModificationDate=now()
 	WHERE
 		ifcdSeq=#{ifcdSeq}
 		

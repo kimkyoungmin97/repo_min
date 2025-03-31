@@ -59,12 +59,12 @@
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2">
-                      <input type="text" class="form-control" id="date_timepicker_start" name="date_timepicker_start">
+                      <input type="text" class="form-control" id="shDateStart" name="shDateStart" th:value="${vo.shDateStart}">
                     </div>
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2" >
-                      <input type="text" class="form-control" id="date_timepicker_end" name="date_timepicker_end">
+                      <input type="text" class="form-control" id="shDateEnd" name="shDateEnd" th:value="${vo.shDateEnd}">
                     </div>
                   </div>
                 </div>
@@ -219,6 +219,9 @@
 	   formList.action="/codegroupXdmList";
 	   document.getElementById("shOption").value="";
 	   document.getElementById("shValue").value="";
+	   document.getElementById("shOptionDate").value="";
+	   document.getElementById("shDateStart").value="";
+	   document.getElementById("shDateEnd").value="";
 	   document.getElementById("formList").submit(); 
 	   
    }
@@ -233,25 +236,29 @@
 	    formList.submit();
 	}
  
-   
+	$.datetimepicker.setLocale('ko');
 	jQuery(function(){
-		 jQuery('#date_timepicker_start').datetimepicker({
-		  format:'Y/m/d',
-		  onShow:function( ct ){
-		   this.setOptions({
-		    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
-		   })
-		  },
-		  timepicker:false
+		 jQuery('#shDateStart').datetimepicker({
+			 
+		  timepicker:false,
+		  format:'Y-m-d'
+// 		  onShow:function( ct ){
+// 		   this.setOptions({
+// 		    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+// 		   })
+// 		  },
+// 		  timepicker:false
 		 });
-		 jQuery('#date_timepicker_end').datetimepicker({
-		  format:'Y/m/d',
-		  onShow:function( ct ){
-		   this.setOptions({
-		    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
-		   })
-		  },
-		  timepicker:false
+		 jQuery('#shDateEnd').datetimepicker({
+			 timepicker:false,
+			  format:'Y-m-d'
+// 		  format:'Y/m/d',
+// 		  onShow:function( ct ){
+// 		   this.setOptions({
+// 		    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+// 		   })
+// 		  },
+// 		  timepicker:false
 		 });
 		});
   </script>

@@ -135,8 +135,8 @@
                            <td th:text=${list.ifcgName}></td>	
                            <td th:text=${list.ifcdSeq}></td>
                            <td><a  href="javascript:void(0);" th:text=${list.ifcdName} th:attr="onclick=|goForm('${list.ifcdSeq}')|"></a></td>
-                           <td></td>
-                           <td></td>
+                           <td th:text=${list.ifcdRegistrationDate}></td>
+                           <td th:text=${list.ifcdModificationDate}></td>
                          </tr>
                        </tbody>
                      </table>

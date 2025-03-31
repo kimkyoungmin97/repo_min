@@ -16,6 +16,7 @@ public class CompanyController {
 	public String companyxdmlist( Model model,@ModelAttribute("vo") CompanyVo vo) {
 		vo.setParamsPaging(companyService.selectOneCount(vo));
 		if (vo.getTotalRows() > 0) {
+		
 			model.addAttribute("list", companyService.selectList(vo));
 			
 		}
@@ -23,10 +24,30 @@ public class CompanyController {
 		return "xdm/company/CompanyXdmList";
 	}
 	@RequestMapping(value="/companyXdmForm")
-	public String companyXdmForm() {
+	public String companyXdmForm(Model model, @ModelAttribute("vo") CompanyVo vo) {
+		if (vo.getMcSeq().equals("0") || vo.getMcSeq().equals("")) {
+//			insert mode
+			
+		} else {
+//			update mode
+			model.addAttribute("item", companyService.selectOne(vo));
+//			model.addAttribute("list", codeService.selectList(cvo));
+			
+		}
 		
 		return "xdm/company/CompanyXdmForm";
 	}
+	@RequestMapping(value="/companyXdmUpdt")
+	public String companyXdmUpdt(CompanyDto companyDto) {
+		companyService.update(companyDto);
+		return "redirect:/companyXdmList";
+	}
+	@RequestMapping(value="/companyXdmInst")
+	public String companyXdmInst(CompanyDto companyDto) {
+		companyService.insert(companyDto);
+		return "redirect:/companyXdmList";
+	}
+	
 	
 	
 	

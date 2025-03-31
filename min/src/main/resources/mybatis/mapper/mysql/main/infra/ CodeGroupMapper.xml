@@ -11,12 +11,12 @@
 			
 		 <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if>
         <if test="shDelNy != null and !shDelNy.equals('')">AND ifcgDelNy = #{shDelNy}</if>
-<!-- 				
+	
 				<choose>
-					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 1">AND registrationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND modificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				</choose>
- -->				
+
         <choose>
             <when test="shOption == 1">AND ifcgSeq = #{shValue}</when>
             <when test="shOption == 2">AND ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
@@ -59,7 +59,8 @@
 		UPDATE codegroup 
 	    SET
 			ifcgName=#{ifcgName},
-	        ifcgUseNy=#{ifcgUseNy}
+	        ifcgUseNy=#{ifcgUseNy},
+	        modificationDate=now()
 		WHERE
 			ifcgSeq=#{ifcgSeq}
 	</update>
@@ -69,11 +70,15 @@
 		INSERT INTO codegroup (
 		
 			ifcgUseNy,
-			ifcgName	
+			ifcgName,
+			registrationDate,
+		    modificationDate
 					
 		)VALUES(
 			#{ifcgUseNy},
-			#{ifcgName}
+			#{ifcgName},
+			now(),
+			now()
 		)	
 		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
 			SELECT last_insert_id()

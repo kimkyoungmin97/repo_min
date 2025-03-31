@@ -16,5 +16,14 @@ public class CompanyService {
 	public int selectOneCount(CompanyVo vo) {
 		return companyDao.selectOneCount(vo);
 	}
+	public CompanyDto selectOne(CompanyVo vo){
+		return companyDao.selectOne(vo);
+	}
+	public int update(CompanyDto companyDto) {
+		return companyDao.update(companyDto);
+	}
+	public int insert(CompanyDto companyDto) {
+		return companyDao.insert(companyDto);
+	}
 
 }

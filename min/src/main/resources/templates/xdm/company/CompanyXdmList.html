@@ -15,7 +15,7 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item">Tables</li>
+					<li class="breadcrumb-item">시스템관리</li>
 					<li class="breadcrumb-item active">이사회사 관리</li>
 				</ol>
 			</nav>
@@ -29,9 +29,10 @@
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">
-								<strong>Code Group</strong>
+								<strong>이사회사 관리</strong>
 							</h5>
 							<form id="formList">
+							<input type="hidden" name="mcSeq">
 								<div class="row my-3">
 									<div class="col-2">
 										<select class="form-select"
@@ -144,7 +145,7 @@
 													<td><input class="form-check-input" type="checkbox"
 														id="checkboxNoLabel" value="" aria-label="..."></td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-													<td th:text="${list.mcName}"></td>
+													<td ><a href="javascript:void(0);" th:text="${list.mcName}" th:attr="onclick=|goForm('${list.mcSeq}')|" ></a></td>
 													<td th:text="${list.partnerName}"></td>
 													<td th:text="${list.mcTypeCd}"></td>
 													<td th:text="${list.mcRegionCd}"></td>
@@ -225,6 +226,7 @@
 	<div th:replace="~{xdm/include/script :: script}"></div>
 
 	 <script type="text/javascript">
+	 let seq = document.querySelector("input[name=mcSeq]");	
   
   
 //    function goList(thisPage){ 
@@ -252,9 +254,15 @@
 //    }
    document.getElementById("btnForm").onclick=function() {
 	
-	  location.href="/companyXdmForm";
+	  goForm(0);
 	   
    }
+
+	goForm = function (keyValue) {
+	    seq.value = keyValue;
+	    formList.action ="/companyXdmForm";
+	    formList.submit();
+	}
    
    
   	

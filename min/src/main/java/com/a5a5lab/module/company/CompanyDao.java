@@ -8,5 +8,8 @@ import org.springframework.stereotype.Repository;
 public interface CompanyDao {
 	public List<CompanyDto> selectList(CompanyVo vo);
 	public int selectOneCount(CompanyVo vo);
+	public CompanyDto selectOne(CompanyVo vo);
+	public int update(CompanyDto companyDto);
+	public int insert(CompanyDto companyDto);
 
 }

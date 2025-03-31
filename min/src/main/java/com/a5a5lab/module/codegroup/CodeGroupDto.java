@@ -1,12 +1,14 @@
 package com.a5a5lab.module.codegroup;
 
+import java.sql.Date;
+
 public class CodeGroupDto {
 	private String ifcgSeq;
 	private int ifcgDelNy;
 	private int ifcgUseNy;
 	private String ifcgName;
-	private String registrationDate;
-	private String modificationDate;
+	private Date registrationDate;
+	private Date modificationDate;
 	private int xifcdSeqCount;
 	public int getIfcgUseNy() {
 		return ifcgUseNy;
@@ -32,16 +34,17 @@ public class CodeGroupDto {
 	public void setIfcgName(String ifcgName) {
 		this.ifcgName = ifcgName;
 	}
-	public String getRegistrationDate() {
+	
+	public Date getRegistrationDate() {
 		return registrationDate;
 	}
-	public void setRegistrationDate(String registrationDate) {
+	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-	public String getModificationDate() {
+	public Date getModificationDate() {
 		return modificationDate;
 	}
-	public void setModificationDate(String modificationDate) {
+	public void setModificationDate(Date modificationDate) {
 		this.modificationDate = modificationDate;
 	}
 	public int getXifcdSeqCount() {

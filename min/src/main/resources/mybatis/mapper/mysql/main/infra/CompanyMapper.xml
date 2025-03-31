@@ -35,10 +35,93 @@
 	  addPriceDistance,
 	  ladderTruckNy,
 	  mcDelNy
-	<include refid="selectCommon"/>		
+	<include refid="selectCommon"/>	
+	ORDER BY mcSeq DESC	
 	
 
 </select>
+<select id="selectOne" resultMap="resultMapObj">
+	SELECT
+	  mcSeq,
+	  mcTypeCd,
+	  mcRegionCd,
+	  mcName,
+	  mcAddress,
+	  mcTel,
+	  mcServiceMemo,
+	  partnerName,
+	  dateOfPartnership,
+	  mcBasicPrice,
+	  mcBasicWorker,
+	  mcBasicDistance,
+	  mcMainVehicle,
+	  addPriceWorker,
+	  addPriceDistance,
+	  ladderTruckNy,
+	  mcDelNy
+	FROM
+		movingcompany
+	WHERE 1=1
+		AND mcSeq=#{mcSeq}	
+</select>
+<update id="update">
+	UPDATE movingcompany 
+	SET
+		  mcTypeCd =#{mcTypeCd},
+		  mcRegionCd=#{mcRegionCd},
+		  mcName =#{mcName},
+		  mcAddress=#{mcAddress},
+		  mcTel=#{mcTel},
+		  partnerName=#{partnerName},
+		  dateOfPartnership=#{dateOfPartnership},
+		  mcBasicPrice=#{mcBasicPrice},
+		  mcBasicWorker=#{mcBasicWorker},
+		  mcBasicDistance=#{mcBasicDistance},
+		  mcMainVehicle=#{mcMainVehicle},
+		  addPriceWorker=#{addPriceWorker},
+		  addPriceDistance=#{addPriceDistance},
+		  ladderTruckNy=#{ladderTruckNy},
+		  mcDelNy=#{mcDelNy}
+		WHERE 1=1
+			AND mcSeq=#{mcSeq}
+</update>
+<insert id="insert">
+	INSERT INTO movingcompany(
+	  mcTypeCd,
+	  mcRegionCd,
+	  mcName,
+	  mcAddress,
+	  mcTel,
+	  mcServiceMemo,
+	  partnerName,
+	  dateOfPartnership,
+	  mcBasicPrice,
+	  mcBasicWorker,
+	  mcBasicDistance,
+	  mcMainVehicle,
+	  addPriceWorker,
+	  addPriceDistance,
+	  ladderTruckNy,
+	  mcDelNy
+	)VALUES(
+	  #{mcTypeCd},
+	  #{mcRegionCd},
+	  #{mcName},
+	  #{mcAddress},
+	  #{mcTel},
+	  #{mcServiceMemo},
+	  #{partnerName},
+	  #{dateOfPartnership},
+	  #{mcBasicPrice},
+	  #{mcBasicWorker},
+	  #{mcBasicDistance},
+	  #{mcMainVehicle},
+	  #{addPriceWorker},
+	  #{addPriceDistance},
+	  #{ladderTruckNy},
+	  #{mcDelNy}
+	)
+</insert>
 
 
 

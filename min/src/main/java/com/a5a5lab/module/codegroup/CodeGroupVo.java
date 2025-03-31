@@ -1,5 +1,7 @@
 package com.a5a5lab.module.codegroup;
 
+import java.sql.Date;
+
 public class CodeGroupVo {
 	
 //	paging
@@ -14,16 +16,36 @@ public class CodeGroupVo {
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 	
-	private String ifcgSeq;
 
 //	search
 	private Integer shUseNy = 1; 									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private Integer shDelNy = 0; 								/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
-	private Integer shOptionDate = 2;							/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shOptionDate;							/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String shDateStart;
 	private String shDateEnd;
 	private Integer shOption;									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String shValue;
+	// codegroup
+	private String ifcgSeq;
+	private Date registrationDate;
+	private Date modificationDate;
+
+
+public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+	public Date getModificationDate() {
+		return modificationDate;
+	}
+
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
+	}
 
 public String getIfcgSeq() {
 		return ifcgSeq;
@@ -57,6 +79,7 @@ public String getIfcgSeq() {
 		this.shOptionDate = shOptionDate;
 	}
 
+	
 	public String getShDateStart() {
 		return shDateStart;
 	}
@@ -194,6 +217,7 @@ public String getIfcgSeq() {
 //		System.out.println("getTotalPages():" + getTotalPages());
 //		System.out.println("getStartPage():" + getStartPage());
 //		System.out.println("getEndPage():" + getEndPage());		
+//		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
 //		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
 
 	}
