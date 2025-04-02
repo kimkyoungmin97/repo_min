@@ -24,12 +24,13 @@ public class CompanyController {
 		return "xdm/company/CompanyXdmList";
 	}
 	@RequestMapping(value="/companyXdmForm")
-	public String companyXdmForm(Model model, @ModelAttribute("vo") CompanyVo vo) {
+	public String companyXdmForm(Model model, @ModelAttribute("vo") CompanyVo vo, CompanyDto companyDto) {
 		if (vo.getMcSeq().equals("0") || vo.getMcSeq().equals("")) {
 //			insert mode
 			
 		} else {
 //			update mode
+			model.addAttribute("list", companyService.codeList(companyDto));
 			model.addAttribute("item", companyService.selectOne(vo));
 //			model.addAttribute("list", codeService.selectList(cvo));
 			

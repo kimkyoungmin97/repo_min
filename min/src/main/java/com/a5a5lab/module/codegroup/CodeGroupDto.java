@@ -7,8 +7,8 @@ public class CodeGroupDto {
 	private int ifcgDelNy;
 	private int ifcgUseNy;
 	private String ifcgName;
-	private Date registrationDate;
-	private Date modificationDate;
+	private String registrationDate;
+	private String modificationDate;
 	private int xifcdSeqCount;
 	public int getIfcgUseNy() {
 		return ifcgUseNy;
@@ -35,16 +35,17 @@ public class CodeGroupDto {
 		this.ifcgName = ifcgName;
 	}
 	
-	public Date getRegistrationDate() {
+	
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-	public Date getModificationDate() {
+	public String getModificationDate() {
 		return modificationDate;
 	}
-	public void setModificationDate(Date modificationDate) {
+	public void setModificationDate(String modificationDate) {
 		this.modificationDate = modificationDate;
 	}
 	public int getXifcdSeqCount() {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.a5a5lab.module.code.CodeService;
-import com.a5a5lab.module.code.CodeVo;
+import com.a5a5lab.module.util.UtilDateTime;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -24,11 +24,9 @@ public class CodeGroupController {
 	
 	
 	@RequestMapping(value="/codegroupXdmList")
-	public String codegroupxdmlist(Model model, @ModelAttribute("vo") CodeGroupVo vo,HttpSession httpSession) {
-		
-		if(vo.getShDateStart()==null || vo.getShDateEnd()==null) {
-			System.out.println("뭔가 이상하다");
-		}
+	public String codegroupxdmlist(Model model, @ModelAttribute("vo") CodeGroupVo vo) {
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 	    vo.setParamsPaging(codeGroupService.selectOneCount(vo));
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", codeGroupService.selectList(vo));

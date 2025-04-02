@@ -27,25 +27,26 @@ public class CodeGroupVo {
 	private String shValue;
 	// codegroup
 	private String ifcgSeq;
-	private Date registrationDate;
-	private Date modificationDate;
-
-
-public Date getRegistrationDate() {
-		return registrationDate;
-	}
-
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}
-
-	public Date getModificationDate() {
-		return modificationDate;
-	}
-
-	public void setModificationDate(Date modificationDate) {
-		this.modificationDate = modificationDate;
-	}
+//	private Date registrationDate;
+//	private Date modificationDate;
+//	
+//
+//
+//public Date getRegistrationDate() {
+//		return registrationDate;
+//	}
+//
+//	public void setRegistrationDate(Date registrationDate) {
+//		this.registrationDate = registrationDate;
+//	}
+//
+//	public Date getModificationDate() {
+//		return modificationDate;
+//	}
+//
+//	public void setModificationDate(Date modificationDate) {
+//		this.modificationDate = modificationDate;
+//	}
 
 public String getIfcgSeq() {
 		return ifcgSeq;
@@ -221,6 +222,7 @@ public String getIfcgSeq() {
 //		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
 
 	}
+	
 	
 	
 	

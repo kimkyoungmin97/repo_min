@@ -13,9 +13,24 @@ public class MemberDto {
 	 private String userNickName;
 	 private String userAddress;
 	 private Integer userDelNy;
+	 private String userRegistrationDate;
+	 private String userModificationDate;
 	 
 	 // code
 	 private String ifcdName;
+	 
+	public String getUserRegistrationDate() {
+		return userRegistrationDate;
+	}
+	public void setUserRegistrationDate(String userRegistrationDate) {
+		this.userRegistrationDate = userRegistrationDate;
+	}
+	public String getUserModificationDate() {
+		return userModificationDate;
+	}
+	public void setUserModificationDate(String userModificationDate) {
+		this.userModificationDate = userModificationDate;
+	}
 	public String getIfcdName() {
 		return ifcdName;
 	}

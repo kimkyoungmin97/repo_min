@@ -42,25 +42,25 @@
 </select>
 <select id="selectOne" resultMap="resultMapObj">
 	SELECT
-	  mcSeq,
-	  mcTypeCd,
-	  mcRegionCd,
-	  mcName,
-	  mcAddress,
-	  mcTel,
-	  mcServiceMemo,
-	  partnerName,
-	  dateOfPartnership,
-	  mcBasicPrice,
-	  mcBasicWorker,
-	  mcBasicDistance,
-	  mcMainVehicle,
-	  addPriceWorker,
-	  addPriceDistance,
-	  ladderTruckNy,
-	  mcDelNy
+	  a.mcSeq,
+	  a.mcTypeCd,
+	  a.mcRegionCd,
+	  a.mcName,
+	  a.mcAddress,
+	  a.mcTel,
+	  a.mcServiceMemo,
+	  a.partnerName,
+	  a.dateOfPartnership,
+	  a.mcBasicPrice,
+	  a.mcBasicWorker,
+	  a.mcBasicDistance,
+	  a.mcMainVehicle,
+	  a.addPriceWorker,
+	  a.addPriceDistance,
+	  a.ladderTruckNy,
+	  a.mcDelNy
 	FROM
-		movingcompany
+		movingcompany AS a
 	WHERE 1=1
 		AND mcSeq=#{mcSeq}	
 </select>
@@ -122,6 +122,14 @@
 	  #{mcDelNy}
 	)
 </insert>
+<select id="codeList">
+	select
+		ifcdSeq,
+		ifcdName,
+	    codeGroup_ifcgSeq
+	from
+		code
+</select>
 
 
 

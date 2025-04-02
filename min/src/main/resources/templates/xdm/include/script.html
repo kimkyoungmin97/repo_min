@@ -24,6 +24,27 @@
 
   
   <script type="text/javascript">
+  
+  document.addEventListener("DOMContentLoaded", function () {
+	
+	 let pathName = window.location.pathname;
+	 if(pathName.startsWith("/code")){
+		 document.getElementById("tables-nav").className="nav-content collapse show"
+		 if(pathName.includes("group")){
+			 document.getElementById("btnCodegroup").className="active"			 
+		 }else{
+		 document.getElementById("btnCode").className="active" 
+		 } 
+	 } else if(pathName.startsWith("/member")){
+		 document.getElementById("user-nav").className="nav-content collapse show"
+			 document.getElementById("btnMember").className="active"
+	 } else if(pathName.startsWith("/company")){
+		 document.getElementById("mc-nav").className="nav-content collapse show"
+			 document.getElementById("btnCompany").className="active"
+	 }
+	  });
+  
+  
 	$("#btnSignout").on("click", function(){
 		$.ajax({
 			async: true 
@@ -41,6 +62,19 @@
 			
 		});
 	});
+	$.datetimepicker.setLocale('ko');
+	jQuery(function(){
+		 jQuery('#shDateStart').datetimepicker({
+			 
+		  timepicker:false,
+		  format:'Y-m-d'
+		 });
+		 jQuery('#shDateEnd').datetimepicker({
+			 timepicker:false,
+			  format:'Y-m-d'
+
+		 });
+		});
   	
   </script>
 </th:block>

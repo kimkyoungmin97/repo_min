@@ -53,29 +53,6 @@
 									<div class="col-2">
 										<select class="form-select"
 											aria-label="Default select example">
-											<option selected>날짜</option>
-											<option value="1">날짜</option>
-											<option value="2">등록일</option>
-											<option value="3">수정일</option>
-										</select>
-									</div>
-									<div class="col-2">
-										<div class="form-floating-2">
-											<input type="text" class="form-control" id="floatingDate"
-												placeholder="날짜">
-										</div>
-									</div>
-									<div class="col-2">
-										<div class="form-floating-2">
-											<input type="text" class="form-control" id="floatingDate"
-												placeholder="날짜">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-2">
-										<select class="form-select"
-											aria-label="Default select example">
 											<option selected>검색구분</option>
 											<option value="1">코드그룹 코드</option>
 											<option value="2">코드그룹 이름</option>
@@ -89,15 +66,17 @@
 										</div>
 									</div>
 									<div class="col">
-										<button type="button"
+										<button type="button" id="btnSearch"
 											class="btn btn-light btn btn-outline-dark">
 											<i class="fa-solid fa-magnifying-glass"></i>
 										</button>
-										<button type="button"
+										<button type="button" id="btnReload"
 											class="btn btn-light btn btn-outline-dark">
 											<i class="fa-solid fa-rotate-right"></i>
 										</button>
 									</div>
+								</div>
+								<div class="row">
 								</div>
 							</form>
 
@@ -147,8 +126,8 @@
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
 													<td ><a href="javascript:void(0);" th:text="${list.mcName}" th:attr="onclick=|goForm('${list.mcSeq}')|" ></a></td>
 													<td th:text="${list.partnerName}"></td>
-													<td th:text="${list.mcTypeCd}"></td>
-													<td th:text="${list.mcRegionCd}"></td>
+													<td th:text="${@codeService.selectOneCachedCode(list.mcTypeCd)}" ></td>
+													<td th:text="${@codeService.selectOneCachedCode(list.mcRegionCd)}"></td>
 													<td th:text="${list.mcAddress}"></td>
 													<td th:text="${list.mcTel}"></td>
 													<td th:text="${list.dateOfPartnership}"></td>
@@ -229,29 +208,29 @@
 	 let seq = document.querySelector("input[name=mcSeq]");	
   
   
-//    function goList(thisPage){ 
-// 	   formList.action ="/companyXdmList";
-// 	   document.getElementById("thisPage").value=thisPage;
-// 	   document.getElementById("formList").submit(); 
-//    }
-//    function showList(value){
-// 	   formList.action ="/companyXdmList";
-// 	   document.getElementById("rowNumToShow").value=value;
-// 	   document.getElementById("formList").submit(); 
+   function goList(thisPage){ 
+	   formList.action ="/companyXdmList";
+	   document.getElementById("thisPage").value=thisPage;
+	   document.getElementById("formList").submit(); 
+   }
+   function showList(value){
+	   formList.action ="/companyXdmList";
+	   document.getElementById("rowNumToShow").value=value;
+	   document.getElementById("formList").submit(); 
 	   
-//    }
-//    document.getElementById("btnSearch").onclick=function() {
-// 	   formList.action="/companyXdmList";
-// 	   document.getElementById("formList").submit(); 
+   }
+   document.getElementById("btnSearch").onclick=function() {
+	   formList.action="/companyXdmList";
+	   document.getElementById("formList").submit(); 
 	   
-//    }
-//    document.getElementById("btnReload").onclick=function() {
-// 	   formList.action="/companyXdmList";
-// 	   document.getElementById("shOption").value="";
-// 	   document.getElementById("shValue").value="";
-// 	   document.getElementById("formList").submit(); 
+   }
+   document.getElementById("btnReload").onclick=function() {
+	   formList.action="/companyXdmList";
+	   document.getElementById("shOption").value="";
+	   document.getElementById("shValue").value="";
+	   document.getElementById("formList").submit(); 
 	   
-//    }
+   }
    document.getElementById("btnForm").onclick=function() {
 	
 	  goForm(0);

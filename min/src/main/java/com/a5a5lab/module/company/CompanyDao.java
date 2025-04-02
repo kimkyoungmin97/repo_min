@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CompanyDao {
 	public List<CompanyDto> selectList(CompanyVo vo);
+	public List<CompanyDto> codeList(CompanyDto companyDto);
 	public int selectOneCount(CompanyVo vo);
 	public CompanyDto selectOne(CompanyVo vo);
 	public int update(CompanyDto companyDto);

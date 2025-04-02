@@ -18,6 +18,29 @@ public class CompanyDto {
 	private String addPriceDistance;
 	private Integer ladderTruckNy;
 	private Integer mcDelNy;
+	//code
+	private String ifcdSeq;
+	private String ifcdName;
+	private String codeGroup_ifcgSeq;
+	
+	public String getIfcdSeq() {
+		return ifcdSeq;
+	}
+	public void setIfcdSeq(String ifcdSeq) {
+		this.ifcdSeq = ifcdSeq;
+	}
+	public String getIfcdName() {
+		return ifcdName;
+	}
+	public void setIfcdName(String ifcdName) {
+		this.ifcdName = ifcdName;
+	}
+	public String getCodeGroup_ifcgSeq() {
+		return codeGroup_ifcgSeq;
+	}
+	public void setCodeGroup_ifcgSeq(String codeGroup_ifcgSeq) {
+		this.codeGroup_ifcgSeq = codeGroup_ifcgSeq;
+	}
 	public String getMcSeq() {
 		return mcSeq;
 	}

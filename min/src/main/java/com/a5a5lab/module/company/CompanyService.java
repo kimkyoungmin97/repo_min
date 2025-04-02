@@ -25,5 +25,8 @@ public class CompanyService {
 	public int insert(CompanyDto companyDto) {
 		return companyDao.insert(companyDto);
 	}
+	public List<CompanyDto> codeList(CompanyDto companyDto){
+		return companyDao.codeList(companyDto);
+	}
 
 }

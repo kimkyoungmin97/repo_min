@@ -113,10 +113,10 @@
                           <th>통신사</th>
                           <th>전화번호</th>
                           <th>아이디</th>
-                          <th>비밀번호</th>
                           <th>이메일</th>
                           <th>닉네임</th>
-                          <th>주소</th>
+                          <th>등록일</th>
+                          <th>수정일</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -134,10 +134,10 @@
                           <td th:text="${@codeService.selectOneCachedCode(list.telAgencyCd)}"></td>
                           <td th:text="${list.userTel}"></td>
                           <td th:text="${list.userId}"></td>
-                          <td th:text="${list.userPw}"></td>
                           <td th:text="${list.userEmail}"></td>
                           <td th:text="${list.userNickName}"></td>
-                          <td th:text="${list.userAddress}"></td>
+                          <td ></td>
+                          <td th:text="${list.userModificationDate}"></td>
                         </tr>
                         
                       </tbody>

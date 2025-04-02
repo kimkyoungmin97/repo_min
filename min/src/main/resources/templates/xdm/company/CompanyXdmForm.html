@@ -68,7 +68,11 @@
               <div class="col-3">
                 <div class="mb-3">
                   <label for="mcTypeCd" class="form-label">이사 유형<span style="color: crimson;">*</span></label>
-                  <input class="form-control" type="text" id="mcTypeCd" name="mcTypeCd" th:value="${item?.mcTypeCd}">
+                  <select class="form-select" id="mcTypeCd" name="mcTypeCd">
+						<option selected value="">선택하세요.</option>
+						<option th:if="${list.codeGroup_ifcgSeq =='3'}" th:each="list :${list}" th:selected="${item.mcTypeCd ==list.ifcdSeq}" th:text="${list.ifcdName}" th:value="${list.ifcdSeq}" ></option>
+<!--                         <option th:if="${vo.mcSeq == '0'}" th:each="list :${listInst}"  th:text="${list.ifcgName}" th:value = "${list.ifcgSeq}"></option> -->
+					</select>
                 </div>
               </div>
               <div class="col-3">
@@ -94,7 +98,7 @@
               <div class="col-3">
                 <div class="mb-3">
                   <label for="mcBasicDistance" class="form-label">기본거리<span style="color: crimson;">*</span></label>
-                  <input class="form-control" type="text" id="mcBasicDistance" name="mcBasiceDistance" th:value="${item?.mcBasicDistance}">
+                  <input class="form-control" type="text" id="mcBasicDistance" name="mcBasicDistance" th:value="${item?.mcBasicDistance}">
                 </div>
               </div>
               <div class="col-3">

@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.a5a5lab.module.util.UtilDateTime;
+
 
 
 @Controller
@@ -16,6 +18,8 @@ public class CodeController {
 	CodeService codeService;
 	@RequestMapping(value="/codeXdmList")
 	public String codeXdmList(Model model, @ModelAttribute("vo") CodeVo vo) {
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(codeService.selectOneCount(vo));
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", codeService.selectList(vo));

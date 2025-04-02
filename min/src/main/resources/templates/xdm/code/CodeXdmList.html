@@ -30,7 +30,7 @@
             <div class="card-body">
               <h5 class="card-title"><strong>Code</strong></h5>
 
-              <form id="formList" method="get">
+              <form id="formList" method="get" autocomplete="off">
               <input type="hidden" id="thisPage" name="thisPage"  th:value="${vo.thisPage}" default="1"/>
 			  <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 			  <input type="hidden" name="ifcdSeq">
@@ -59,12 +59,12 @@
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2">
-                      <input type="text" class="form-control" id="shDateStart" name="shDateStart">
+                      <input type="text" class="form-control" id="shDateStart" name="shDateStart" th:value="${vo.shDateStart}">
                     </div>
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2">
-                      <input type="text" class="form-control" id="shDateEnd" name="shDateEnd">
+                      <input type="text" class="form-control" id="shDateEnd" name="shDateEnd" th:value="${vo.shDateEnd}">
                     </div>
                   </div>
                 </div>
@@ -167,9 +167,9 @@
                     <div class="col" style="text-align: right;">
                       <div>
                         <button type="button" id="btnForm" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
-                        <button type="button" class="btn btn-success"><i class="fa-solid fa-wrench"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                        <button type="button" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></button>
+<!--                         <button type="button" class="btn btn-success"><i class="fa-solid fa-wrench"></i></button> -->
+<!--                         <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button> -->
+<!--                         <button type="button" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></button> -->
                      </div>
                     </div>
                   </div>
@@ -224,6 +224,9 @@
 	   formList.action="/codeXdmList";
 	   document.getElementById("shOption").value="";
 	   document.getElementById("shValue").value="";
+	   document.getElementById("shOptionDate").value="";
+	   document.getElementById("shDateStart").value="";
+	   document.getElementById("shDateEnd").value="";
 	   document.getElementById("formList").submit(); 
 	   
   }

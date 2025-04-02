@@ -1,6 +1,6 @@
 package com.a5a5lab.module.code;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +11,8 @@ public class CodeDto {
 	private Integer ifcdUseNy;
 	private Integer ifcdDelNy;
 	private String codeGroup_ifcgSeq;
-	private Date ifcdRegistrationDate;
-	private Date ifcdModificationDate;
+	private String ifcdRegistrationDate;
+	private String ifcdModificationDate;
 	//	codegroup
 	private String ifcgSeq;
 	private String ifcgName;
@@ -23,18 +23,23 @@ public class CodeDto {
 	public Integer getIfcdUseNy() {
 		return ifcdUseNy;
 	}
-	public Date getIfcdRegistrationDate() {
+	
+	public String getIfcdRegistrationDate() {
 		return ifcdRegistrationDate;
 	}
-	public void setIfcdRegistrationDate(Date ifcdRegistrationDate) {
+
+	public void setIfcdRegistrationDate(String ifcdRegistrationDate) {
 		this.ifcdRegistrationDate = ifcdRegistrationDate;
 	}
-	public Date getIfcdModificationDate() {
+
+	public String getIfcdModificationDate() {
 		return ifcdModificationDate;
 	}
-	public void setIfcdModificationDate(Date ifcdModificationDate) {
+
+	public void setIfcdModificationDate(String ifcdModificationDate) {
 		this.ifcdModificationDate = ifcdModificationDate;
 	}
+
 	public void setIfcdUseNy(Integer ifcdUseNy) {
 		this.ifcdUseNy = ifcdUseNy;
 	}

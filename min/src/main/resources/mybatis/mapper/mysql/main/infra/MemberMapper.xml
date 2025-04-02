@@ -42,7 +42,9 @@
 		userEmail,
 		userNickName,
 		userAddress,
-		userDelNy
+		userDelNy,
+		userRegistrationDate,
+		userModificationDate
 	<include refid="selectCommon"/>
 	ORDER BY userSeq DESC
 	LIMIT #{startRnumForMysql},#{rowNumToShow}
