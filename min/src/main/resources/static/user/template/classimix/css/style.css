@@ -606,8 +606,9 @@ ul.pagination .active a {
 }
 
 .bg-1 {
-  background: url("../images/home/hero.jpg");
-  background-size: cover;
+  background: url("/user/template/classimix/images/igguanaFinal.jpg");
+/*   background-size: cover; */
+	height :500px;
   background-repeat: no-repeat;
 }
 
@@ -866,10 +867,11 @@ ul.pagination .active a {
 }
 
 .hero-area {
-  padding: 100px 0 0;
+  padding: 50px 0 0;
 }
 .hero-area .content-block {
   padding-bottom: 80px;
+  margin-left: 40%;
 }
 .hero-area .advance-search {
   background: #fff;

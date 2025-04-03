@@ -8,6 +8,18 @@
 	FROM
 		movingcompany
 	WHERE 1=1
+<!-- 	 <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
+        <if test="shDelNy != null and !shDelNy.equals('')">AND mcDelNy = #{shDelNy}</if>
+	
+				<choose>
+					<when test="shOptionDate == 1">AND mcRegistrationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND mcModificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+
+        <choose>
+            <when test="shOption == 1">AND mcName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 2">AND partnerName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
 </sql>
 
 <select id="selectOneCount">
@@ -26,7 +38,6 @@
 	  mcTel,
 	  mcServiceMemo,
 	  partnerName,
-	  dateOfPartnership,
 	  mcBasicPrice,
 	  mcBasicWorker,
 	  mcBasicDistance,
@@ -34,7 +45,9 @@
 	  addPriceWorker,
 	  addPriceDistance,
 	  ladderTruckNy,
-	  mcDelNy
+	  mcDelNy,
+	  mcRegistrationDate,
+	  mcModificationDate
 	<include refid="selectCommon"/>	
 	ORDER BY mcSeq DESC	
 	
@@ -50,7 +63,6 @@
 	  a.mcTel,
 	  a.mcServiceMemo,
 	  a.partnerName,
-	  a.dateOfPartnership,
 	  a.mcBasicPrice,
 	  a.mcBasicWorker,
 	  a.mcBasicDistance,
@@ -58,7 +70,9 @@
 	  a.addPriceWorker,
 	  a.addPriceDistance,
 	  a.ladderTruckNy,
-	  a.mcDelNy
+	  a.mcDelNy,
+	  a.mcRegistrationDate,
+	  a.mcModificationDate
 	FROM
 		movingcompany AS a
 	WHERE 1=1
@@ -73,7 +87,6 @@
 		  mcAddress=#{mcAddress},
 		  mcTel=#{mcTel},
 		  partnerName=#{partnerName},
-		  dateOfPartnership=#{dateOfPartnership},
 		  mcBasicPrice=#{mcBasicPrice},
 		  mcBasicWorker=#{mcBasicWorker},
 		  mcBasicDistance=#{mcBasicDistance},
@@ -94,7 +107,6 @@
 	  mcTel,
 	  mcServiceMemo,
 	  partnerName,
-	  dateOfPartnership,
 	  mcBasicPrice,
 	  mcBasicWorker,
 	  mcBasicDistance,
@@ -111,7 +123,6 @@
 	  #{mcTel},
 	  #{mcServiceMemo},
 	  #{partnerName},
-	  #{dateOfPartnership},
 	  #{mcBasicPrice},
 	  #{mcBasicWorker},
 	  #{mcBasicDistance},

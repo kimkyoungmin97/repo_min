@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.a5a5lab.module.util.UtilDateTime;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -20,6 +22,8 @@ public class MemberController {
 	
 	@RequestMapping(value="/memberXdmList")
 	public String memberxdmlist(Model model, @ModelAttribute("vo") MemberVo vo) {
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(memberService.selectOneCount(vo));
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", memberService.selectList(vo));

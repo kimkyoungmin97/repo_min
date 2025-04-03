@@ -9,7 +9,6 @@ public class CompanyDto {
 	private String mcTel;
 	private String mcServiceMemo;
 	private String partnerName;
-	private String dateOfPartnership;
 	private String mcBasicPrice;
 	private String mcBasicWorker;
 	private String mcBasicDistance;
@@ -18,11 +17,25 @@ public class CompanyDto {
 	private String addPriceDistance;
 	private Integer ladderTruckNy;
 	private Integer mcDelNy;
+	private String mcRegistrationDate;
+	private String mcModificationDate;
 	//code
 	private String ifcdSeq;
 	private String ifcdName;
 	private String codeGroup_ifcgSeq;
 	
+	public String getMcRegistrationDate() {
+		return mcRegistrationDate;
+	}
+	public void setMcRegistrationDate(String mcRegistrationDate) {
+		this.mcRegistrationDate = mcRegistrationDate;
+	}
+	public String getMcModificationDate() {
+		return mcModificationDate;
+	}
+	public void setMcModificationDate(String mcModificationDate) {
+		this.mcModificationDate = mcModificationDate;
+	}
 	public String getIfcdSeq() {
 		return ifcdSeq;
 	}
@@ -89,12 +102,7 @@ public class CompanyDto {
 	public void setPartnerName(String partnerName) {
 		this.partnerName = partnerName;
 	}
-	public String getDateOfPartnership() {
-		return dateOfPartnership;
-	}
-	public void setDateOfPartnership(String dateOfPartnership) {
-		this.dateOfPartnership = dateOfPartnership;
-	}
+	
 	public String getMcBasicPrice() {
 		return mcBasicPrice;
 	}

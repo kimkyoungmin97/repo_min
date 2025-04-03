@@ -31,7 +31,7 @@
             <div class="card-body">
               <h5 class="card-title"><strong>Code Group</strong></h5>
 
-              <form id="formList" method="get">
+              <form id="formList" method="get" autocomplete="off">
               <input type="hidden" id="thisPage" name="thisPage" th:value="${vo.thisPage}">
               <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}">
                 <div class="row my-3">
@@ -51,12 +51,12 @@
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2">
-                      <input type="text" class="form-control" id="shDateStart" name="shDateStart" >
+                      <input type="text" class="form-control" id="shDateStart" name="shDateStart" th:value="${vo.shDateStart}" >
                     </div>
                   </div>
                   <div class="col-2">
                     <div class="form-floating-2">
-                      <input type="text" class="form-control" id="shDateEnd" name="shDateEnd" >
+                      <input type="text" class="form-control" id="shDateEnd" name="shDateEnd" th:value="${vo.shDateEnd}">
                     </div>
                   </div>
                 </div>
@@ -65,11 +65,9 @@
                     <select class="form-select" aria-label="Default select example" id="shOption" name="shOption">
  							<option value="" th:selected="${vo.shOption == null}">검색구분</option>
 							<option value="1" th:selected="${vo.shOption == 1}">이름</option>
-							<option value="3" th:selected="${vo.shOption == 2}">생년월일</option>
-							<option value="5" th:selected="${vo.shOption == 3}">전화번호</option>
-							<option value="6" th:selected="${vo.shOption == 4}">아이디</option>
-							<option value="7" th:selected="${vo.shOption == 5}">이메일</option>
-							<option value="8" th:selected="${vo.shOption == 6}">닉네임</option>
+							<option value="2" th:selected="${vo.shOption == 2}">아이디</option>
+							<option value="3" th:selected="${vo.shOption == 3}">이메일</option>
+							<option value="4" th:selected="${vo.shOption == 4}">닉네임</option>
                     </select>
                   </div>
                   <div class="col-2">
@@ -136,7 +134,7 @@
                           <td th:text="${list.userId}"></td>
                           <td th:text="${list.userEmail}"></td>
                           <td th:text="${list.userNickName}"></td>
-                          <td ></td>
+                          <td th:text="${list.userRegistrationDate}"></td>
                           <td th:text="${list.userModificationDate}"></td>
                         </tr>
                         
@@ -220,6 +218,9 @@
 	   formList.action="/memberXdmList";
 	   document.getElementById("shOption").value="";
 	   document.getElementById("shValue").value="";
+	   document.getElementById("shOptionDate").value="";
+	   document.getElementById("shDateStart").value="";
+	   document.getElementById("shDateEnd").value="";
 	   document.getElementById("formList").submit(); 
 	   
    }

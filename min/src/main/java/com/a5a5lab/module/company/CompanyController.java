@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.a5a5lab.module.util.UtilDateTime;
+
 @Controller
 public class CompanyController {
 	
@@ -13,11 +15,14 @@ public class CompanyController {
 	CompanyService companyService;
 	
 	@RequestMapping(value="/companyXdmList")
-	public String companyxdmlist( Model model,@ModelAttribute("vo") CompanyVo vo) {
+	public String companyxdmlist( Model model,@ModelAttribute("vo") CompanyVo vo, CompanyDto companyDto) {
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(companyService.selectOneCount(vo));
 		if (vo.getTotalRows() > 0) {
-		
+//			model.addAttribute("item", companyService.codeList(companyDto));
 			model.addAttribute("list", companyService.selectList(vo));
+			
 			
 		}
 		
