@@ -18,7 +18,15 @@ public class MemberDto {
 	 
 	 // code
 	 private String ifcdName;
+	 //codegroup
+	 private String ifcgSeq;
 	 
+	public String getIfcgSeq() {
+		return ifcgSeq;
+	}
+	public void setIfcgSeq(String ifcgSeq) {
+		this.ifcgSeq = ifcgSeq;
+	}
 	public String getUserRegistrationDate() {
 		return userRegistrationDate;
 	}

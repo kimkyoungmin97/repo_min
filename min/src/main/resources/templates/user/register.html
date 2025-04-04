@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{user/include/head :: head}"></div>
+
+<body class="body-wrapper">
+
+
+<div th:replace="~{user/include/header :: header}"></div>
+
+<section class="login py-5 border-top-1">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-12 align-item-center">
+        <div class="border border">
+          <h3 class="bg-gray p-4">회원가입</h3>
+          <form id="form" class="needs-validation" action="#" novalidate>
+            <fieldset class="p-4">
+              <div class="row">
+                <div class="col-5">
+                  <div class="mb-2">
+                    <label><strong>이름</strong><span style="color: crimson;">*</span></label>
+                    <input class="form-control mb-3" type="text" id="userName" name="userName">
+                    <div class="invalid-feedback">
+                      이름을 입력해주세요.
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="col-lg-3" style="align-content: end; margin-bottom: 28px; padding-left: 0px;">
+                  <div class="form-check d-inline-flex">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required>
+                    <label class="form-check-label" for="inlineRadio1">남성</label>
+                  </div>
+                  <div class="form-check d-inline-flex">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option2" required>
+                    <label class="form-check-label" for="inlineRadio1">여성</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <div class="mb-2">
+                    <label><strong>생년월일</strong><span style="color: crimson;">*</span></label>
+                    <input class="form-control mb-3" type="text" id="userBorn" name="userBorn">
+                    <div class="invalid-feedback">
+                      생년월일을 입력해주세요.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                    <label><strong>전화번호</strong><span style="color: crimson;">*</span></label>
+                  <div class="row">
+                  	<div class="col-3" >
+	                  <select class="nice-select form-select"  id="telAgencyCd" name="telAgencyCd" style="height: 50px; padding: 10px;">
+	                    <option selected value="">통신사</option>
+<!-- 	                    <option th:text="${@codeService.selectOneCachedCode(2)}"></option> -->
+						<option th:each="list :${@codeService.selectListCachedCode(2)}" th:text="${list.ifcdName}" th:value="${list.ifcdSeq}"></option>
+	                  </select>
+                  	</div>
+                  	<div class="col" style="padding-left: 10px;">
+	                    <input class="form-control mb-3" type="text" id="userTel" name="userTel">
+	                    <div class="invalid-feedback"></div>
+                  	</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <div class="mb-2">
+                    <label><strong>아이디</strong><span style="color: crimson;">*</span></label>
+                    <input class="form-control mb-3" type="text" id="userId" name="userId">
+                    <div class="invalid-feedback">
+                      아이디를 입력해주세요.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <div class="mb-2">
+                    <label><strong>비밀번호</strong><span style="color: crimson;">*</span></label>
+                    <input class="form-control mb-3" type="password" id="userPw" name="userPw">
+                    <div class="invalid-feedback">
+                      비밀번호를 입력해주세요.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="mb-2">
+                    <label><strong>비밀번호 확인</strong></label>
+                    <input class="form-control mb-3" type="password">
+                    <div class="invalid-feedback">
+                      비밀번호가 일치하지 않습니다.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <div class="mb-2">
+                    <label><strong>이메일</strong><span style="color: crimson;">*</span></label>
+                    <input class="form-control mb-3" type="text" id="userEmail" name="userEmail">
+                    <div class="invalid-feedback">
+                      이메일을 입력해주세요.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="mb-2">
+                    <label><strong>닉네임</strong><span style="color: crimson;">*</span></label>
+                    <input class="form-control mb-3" type="text" id="userNickName" name="userNickName">
+                    <div class="invalid-feedback">
+                      닉네임을 입력해주세요.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <div class="mb-2">
+                    <label><strong>주소</strong><span style="color: crimson;">*</span></label>
+                    <input class="form-control mb-3" type="text" id="userAddress" name="userAddress">
+                    <div class="invalid-feedback">
+                      주소를 입력해주세요.
+                    </div>
+                  </div>
+                </div>
+<!--                 <div class="col-5"> -->
+<!--                   <div class="mb-2"> -->
+<!--                     <label><strong>상세주소</strong></label> -->
+<!--                     <input class="form-control mb-3" type="text" placeholder="상세주소" required> -->
+<!--                     <div class="invalid-feedback"> -->
+<!--                       상세주소를 입력해주세요. -->
+<!--                     </div> -->
+<!--                   </div> -->
+<!--                 </div> -->
+              </div>
+
+<!--               <div class="row"> -->
+<!--                 <div class="col-5"> -->
+<!--                   <div class="mb-2"> -->
+<!--                     <label><strong>차종</strong><span style="color: crimson;"></span></label> -->
+<!--                     <input class="form-control mb-3" type="text" placeholder="차종" required> -->
+<!--                     <div class="invalid-feedback"> -->
+<!--                       차종을 입력해주세요. -->
+<!--                     </div> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 <div class="col"> -->
+<!--                   <div class="form-check"> -->
+<!--                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required> -->
+<!--                     <label class="form-check-label" for="invalidCheck3"> -->
+<!--                      자차여부 -->
+<!--                     </label> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+              <div class="loggedin-forgot" style="margin-left: 3%;">
+                <input type="checkbox" id="registering" class="form-check-input" required>
+                <label for="registering" class="form-check-label"><a class="text-primary font-weight-bold" href="terms-condition.html">이용약관</a>에 동의합니다.</label>
+                <span class="invalid-feedback">이용약관을 읽어보시고 체크해주세요.</span>
+              </div>
+              <button type="button" id="btnSave" class="btn btn-primary font-weight-bold mt-3" style="float: right;">회원가입</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div th:replace="~{user/include/footer :: footer}"></div>
+
+<!-- 
+Essential Scripts
+=====================================-->
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/bootstrap/popper.min.js"></script>
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="plugins/bootstrap/bootstrap-slider.js"></script>
+<script src="plugins/tether/js/tether.min.js"></script>
+<script src="plugins/raty/jquery.raty-fa.js"></script>
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<!-- google map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
+<script src="plugins/google-map/map.js" defer></script>
+
+<script src="js/script.js"></script>
+
+<script type="text/javascript">
+	document.getElementById("btnSave").onclick=function(){
+// 		document.getElementById("form").action="/registerInst";
+// 		document.getElementById("form").submit();
+		
+	}
+</script>
+
+</body>
+
+</html>

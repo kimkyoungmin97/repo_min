@@ -1,6 +1,7 @@
 package com.a5a5lab.module.code;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class CodeService {
 			List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) codeDao.selectListCachedCodeArrayList();
 			CodeDto.cachedCodeArrayList.clear(); 
 			CodeDto.cachedCodeArrayList.addAll(codeListFromDb);
+			System.out.println(codeListFromDb);
 			System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
 		}
 	    
@@ -51,7 +53,7 @@ public class CodeService {
 		public static List<CodeDto> selectListCachedCode(String ifcgSeq) throws Exception {
 			List<CodeDto> rt = new ArrayList<CodeDto>();
 			for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
-				if (codeRow.getIfcgSeq().equals(ifcgSeq)) {
+				if (codeRow.getCodeGroup_ifcgSeq().equals(ifcgSeq)) {
 					rt.add(codeRow);
 				} else {
 					// by pass

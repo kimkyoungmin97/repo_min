@@ -14,11 +14,17 @@ public class MemberService {
 	public List<MemberDto> selectList(MemberVo vo){
 		return memberDao.selectList(vo);
 	}
+	public List<MemberDto> codeList(MemberDto memberDto){
+		return memberDao.codeList(memberDto);
+	}
 	public int selectOneCount(MemberVo vo){
 		return memberDao.selectOneCount(vo);
 	}
 	public MemberDto selectOne(MemberDto memberDto){
 		return memberDao.selectOne(memberDto);
+	}
+	public int insert(MemberDto memberDto) {
+		return memberDao.insert(memberDto);
 	}
 
 }

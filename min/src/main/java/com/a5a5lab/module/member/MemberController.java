@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.a5a5lab.module.code.CodeService;
 import com.a5a5lab.module.util.UtilDateTime;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	CodeService codeService;
 	
 	@RequestMapping(value="/memberXdmList")
 	public String memberxdmlist(Model model, @ModelAttribute("vo") MemberVo vo) {
@@ -74,6 +76,20 @@ public class MemberController {
 		return returnMap;
 	}
 	
+//------------------------------user
+	@RequestMapping(value="/iguana/register")
+	public String register(Model model, MemberDto memberDto) throws Exception {
+//		memberService.codeList(memberDto);
+		
+		return "user/register";
+	}
+	
+	@RequestMapping(value="/registerInst")
+	public String registerInst(MemberDto memberDto) {
+		memberService.insert(memberDto);
+		return"redirect:/index";
+		
+	}
 	
 
 }

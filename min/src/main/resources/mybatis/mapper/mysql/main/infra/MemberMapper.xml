@@ -69,8 +69,41 @@
 	 <if test="userId != null and !userId.equals('')"> AND userId = #{userId}</if>
 	 <if test="userPw != null and !userPw.equals('')"> AND userPw = #{userPw}</if>
 </select>
-
-
+<insert id="insert">
+	INSERT INTO user(
+		userName,
+		genderCd,
+		userBorn,
+		telAgencyCd,
+		userTel,
+		userId,
+		userPw,
+		userEmail,
+		userNickName,
+		userAddress,
+		userDelNy
+	)VALUES(
+		#{userName},
+		1,
+		#{userBorn},
+		1,
+		#{userTel},
+		#{userId},
+		#{userPw},
+		#{userEmail},
+		#{userNickName},
+		#{userAddress},
+		0
+	)
+</insert>
+<select id="codeList">
+	select
+		ifcdSeq,
+		ifcdName,
+	    codeGroup_ifcgSeq
+	from
+		code
+</select>
 
 
 
