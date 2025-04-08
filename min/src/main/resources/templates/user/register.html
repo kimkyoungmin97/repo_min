@@ -16,7 +16,7 @@
       <div class="col-lg-10 col-md-12 align-item-center">
         <div class="border border">
           <h3 class="bg-gray p-4">회원가입</h3>
-          <form id="form" class="needs-validation" action="#" novalidate>
+          <form id="form" novalidate>
             <fieldset class="p-4">
               <div class="row">
                 <div class="col-5">
@@ -45,7 +45,7 @@
                 <div class="col-5">
                   <div class="mb-2">
                     <label><strong>생년월일</strong><span style="color: crimson;">*</span></label>
-                    <input class="form-control mb-3" type="text" id="userBorn" name="userBorn">
+                    <input class="form-control  mb-3" type="text" id="userBorn" name="userBorn">
                     <div class="invalid-feedback">
                       생년월일을 입력해주세요.
                     </div>
@@ -54,19 +54,28 @@
               </div>
               <div class="row">
                 <div class="col-5">
+                <div class="mb-2">
                     <label><strong>전화번호</strong><span style="color: crimson;">*</span></label>
                   <div class="row">
-                  	<div class="col-3" >
-	                  <select class="nice-select form-select"  id="telAgencyCd" name="telAgencyCd" style="height: 50px; padding: 10px;">
+                  	<div class="col" style="display: flex;">
+                  	<div style="flex: 1;" >
+	                  <select class="nice-select form-select"  id="telAgencyCd" name="telAgencyCd" style="height: 50px; padding-right: 18px;">
 	                    <option selected value="">통신사</option>
-<!-- 	                    <option th:text="${@codeService.selectOneCachedCode(2)}"></option> -->
 						<option th:each="list :${@codeService.selectListCachedCode(2)}" th:text="${list.ifcdName}" th:value="${list.ifcdSeq}"></option>
 	                  </select>
+	                    <div class="invalid-feedback" id="telAgencyCdError" style="white-space: nowrap; position: absolute;">
+	                    통신사를 선택해주세요.
+	                    </div>
                   	</div>
-                  	<div class="col" style="padding-left: 10px;">
+                  	<div style="flex: 2;">
 	                    <input class="form-control mb-3" type="text" id="userTel" name="userTel">
-	                    <div class="invalid-feedback"></div>
+	                    <div class="invalid-feedback" id="userTelError" >
+	                     전화번호를 입력해주세요.
+	                    </div>
                   	</div>
+                  	</div>
+                  </div>
+                  
                   </div>
                 </div>
               </div>
@@ -75,8 +84,7 @@
                   <div class="mb-2">
                     <label><strong>아이디</strong><span style="color: crimson;">*</span></label>
                     <input class="form-control mb-3" type="text" id="userId" name="userId">
-                    <div class="invalid-feedback">
-                      아이디를 입력해주세요.
+                    <div class="invalid-feedback" id="userIdError">
                     </div>
                   </div>
                 </div>
@@ -94,7 +102,7 @@
                 <div class="col-5">
                   <div class="mb-2">
                     <label><strong>비밀번호 확인</strong></label>
-                    <input class="form-control mb-3" type="password">
+                    <input class="form-control mb-3" type="password" id="pwCheck">
                     <div class="invalid-feedback">
                       비밀번호가 일치하지 않습니다.
                     </div>
@@ -180,26 +188,145 @@
 <!-- 
 Essential Scripts
 =====================================-->
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="plugins/bootstrap/popper.min.js"></script>
-<script src="plugins/bootstrap/bootstrap.min.js"></script>
-<script src="plugins/bootstrap/bootstrap-slider.js"></script>
-<script src="plugins/tether/js/tether.min.js"></script>
-<script src="plugins/raty/jquery.raty-fa.js"></script>
-<script src="plugins/slick/slick.min.js"></script>
-<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<script src="/user/template/classimix/plugins/jquery/jquery.min.js"></script>
+<script src="/user/template/classimix/plugins/bootstrap/popper.min.js"></script>
+<script src="/user/template/classimix/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="/user/template/classimix/plugins/bootstrap/bootstrap-slider.js"></script>
+<script src="/user/template/classimix/plugins/tether/js/tether.min.js"></script>
+<script src="/user/template/classimix/plugins/raty/jquery.raty-fa.js"></script>
+<script src="/user/template/classimix/plugins/slick/slick.min.js"></script>
+<script src="/user/template/classimix/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 <!-- google map -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
 <script src="plugins/google-map/map.js" defer></script>
 
-<script src="js/script.js"></script>
+<script src="/user/template/classimix/js/script.js"></script>
 
-<script type="text/javascript">
+
+<script type="text/javascript">	
+	document.getElementById("userId").onblur=function(){
+		loginLogic();
+	}
+	
 	document.getElementById("btnSave").onclick=function(){
+		validation();
+
+
 // 		document.getElementById("form").action="/registerInst";
 // 		document.getElementById("form").submit();
-		
+	};
+	
+
+	
+	function loginLogic (){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/registerProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "userId" : $("#userId").val()}
+			,success: function(response) {
+				if(response.rt =="success"){
+				document.getElementById("userId").className='form-control is-invalid';
+				document.getElementById("userIdError").innerText="중복되는 아이디가 있습니다";
+				document.getElementById("userId").focus();
+				} else{
+					document.getElementById("userId").className='form-control';
+					
+				}
+			}
+		});
 	}
+
+function validation(){
+	if(document.getElementById("userName").value ==""){
+		document.getElementById("userName").className='form-control is-invalid';
+		document.getElementById("userName").focus();
+		return false;
+	} else {
+		document.getElementById("userName").className='form-control';
+		if(document.getElementById("userBorn").value ==""){
+			document.getElementById("userBorn").className='form-control is-invalid';
+			document.getElementById("userBorn").focus();
+			return false;
+		} else{
+			document.getElementById("userBorn").className='form-control';
+			if(document.getElementById("telAgencyCd").value ==""){
+				document.getElementById("telAgencyCd").className='form-control is-invalid';
+				document.getElementById("telAgencyCdError").innerText="통신사를 선택해주세요.";
+				document.getElementById("telAgencyCd").focus();
+				return false;
+			} else{
+				document.getElementById("telAgencyCd").className='form-control';
+				if(document.getElementById("userTel").value ==""){
+					document.getElementById("userTel").className='form-control is-invalid';
+					document.getElementById("userTel").focus();
+					return false;
+				} else{
+					document.getElementById("userTel").className='form-control';
+					if(document.getElementById("userId").value ==""){
+						document.getElementById("userId").className='form-control is-invalid';
+						document.getElementById("userIdError").innerText="아이디를 입력해주세요.";
+						document.getElementById("userId").focus();
+						return false;
+					} else{
+						document.getElementById("userId").className='form-control';
+						if(document.getElementById("userPw").value ==""){
+							document.getElementById("userPw").className='form-control is-invalid';
+							document.getElementById("userPw").focus();
+							return false;
+						} else{
+							document.getElementById("userPw").className='form-control';
+							if(document.getElementById("userPw").value != document.getElementById("pwCheck").value){
+								document.getElementById("pwCheck").className='form-control is-invalid';
+								document.getElementById("pwCheck").focus();
+								return false;
+							} else{
+								document.getElementById("pwCheck").className='form-control';
+								if(document.getElementById("userEmail").value ==""){
+									document.getElementById("userEmail").className='form-control is-invalid';
+									document.getElementById("userEmail").focus();
+									return false;
+								} else{
+									document.getElementById("userEmail").className='form-control';
+									if(document.getElementById("userNickName").value ==""){
+										document.getElementById("userNickName").className='form-control is-invalid';
+										document.getElementById("userNickName").focus();
+										return false;
+									} else{
+										document.getElementById("userNickName").className='form-control';
+										if(document.getElementById("userAddress").value ==""){
+											document.getElementById("userAddress").className='form-control is-invalid';
+											document.getElementById("userAddress").focus();
+											return false;
+										} else{
+											document.getElementById("userAddress").className='form-control';
+										}
+									}
+								}
+							} 
+						}
+					}
+				}
+			}
+			
+		}
+	}
+}
+// 벨리데이션 끝
+
+// function modal(){
+// 	document.getElementById("basicModal").style.display='block';
+// }
+// document.getElementById("closeModal").onclick=function(){
+// 	document.getElementById("basicModal").style.display='none';
+// }
+// document.getElementById("a").onclick=function(){
+// 	document.getElementById("basicModal").style.display='none';
+
+// }
 </script>
 
 </body>

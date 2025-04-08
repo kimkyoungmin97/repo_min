@@ -90,6 +90,20 @@ public class MemberController {
 		return"redirect:/index";
 		
 	}
+
+	@ResponseBody
+	@RequestMapping(value="/registerProc")
+	public Map<String, Object> registerProc(MemberDto memberDto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		MemberDto rtMember = memberService.selectOne(memberDto);
+		if(rtMember != null) {
+			returnMap.put("rt","success");
+		} else {
+			returnMap.put("rt","fail");
+		
+		}
+		return returnMap;
+	}
 	
 
 }
