@@ -16,11 +16,14 @@ public class MemberDto {
 	 private String userRegistrationDate;
 	 private String userModificationDate;
 	 
+	
+	 
 	 // code
 	 private String ifcdName;
 	 //codegroup
 	 private String ifcgSeq;
 	 
+
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}

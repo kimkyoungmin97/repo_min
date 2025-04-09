@@ -209,11 +209,10 @@ Essential Scripts
 	}
 	
 	document.getElementById("btnSave").onclick=function(){
-		validation();
+		if(validation() == false) return false;
 
-
-// 		document.getElementById("form").action="/registerInst";
-// 		document.getElementById("form").submit();
+		document.getElementById("form").action="/registerInst";
+		document.getElementById("form").submit();
 	};
 	
 

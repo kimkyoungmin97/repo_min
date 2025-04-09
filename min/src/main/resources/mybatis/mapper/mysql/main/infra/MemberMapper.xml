@@ -67,7 +67,7 @@
 <!-- 		userSeq=#{userSeq} -->
 	 <if test="userSeq != null and !userSeq.equals('')"> AND userSeq = #{userSeq}</if>
 	 <if test="userId != null and !userId.equals('')"> AND userId = #{userId}</if>
-	 <if test="userPw != null and !userPw.equals('')"> AND userPw = #{userPw}</if>
+<!-- 	 <if test="userPw != null and !userPw.equals('')"> AND userPw = #{userPw}</if> -->
 </select>
 <insert id="insert">
 	INSERT INTO user(

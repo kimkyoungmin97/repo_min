@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,23 +43,16 @@ public class MemberController {
 	public Map<String, Object> signinXdmProc(MemberDto dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		MemberDto rtMember = memberService.selectOne(dto);
-		if(rtMember != null) {
+
+		if(matchesBcrypt(dto.getUserPw(),rtMember.getUserPw(),10)) {
 			returnMap.put("rt","success");
 			httpSession.setAttribute("sessSeqXdm", rtMember.getUserSeq());
 			httpSession.setAttribute("sessIdXdm", rtMember.getUserId());
 			httpSession.setAttribute("sessNameXdm", rtMember.getUserName());	
+
 		} else {
-		
+			
 		}
-//		System.out.println("dto.seq"+ dto.getUserSeq());
-//		System.out.println("dto.id"+ dto.getUserId());
-//		System.out.println("dto.name"+ dto.getUserName());
-//		System.out.println(httpSession.getAttribute("sessSeqXdm"));
-//		System.out.println(httpSession.getAttribute("sessIdXdm"));
-//		System.out.println(httpSession.getAttribute("sessNameXdm"));
-		
-	
-		
 		return returnMap;
 	}
 	@ResponseBody
@@ -86,6 +80,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/registerInst")
 	public String registerInst(MemberDto memberDto) {
+		memberDto.setUserPw(encodeBcrypt(memberDto.getUserPw(),10));
 		memberService.insert(memberDto);
 		return"redirect:/index";
 		
@@ -103,6 +98,17 @@ public class MemberController {
 		
 		}
 		return returnMap;
+	}
+	
+	//암호화
+	public String encodeBcrypt(String planeText, int strength) {
+		  return new BCryptPasswordEncoder(strength).encode(planeText);
+	}
+
+			
+	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
+	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+	  return passwordEncoder.matches(planeText, hashValue);
 	}
 	
 
