@@ -106,9 +106,32 @@
               <div class="col-3">
                 <div class="mb-3">
                   <label for="exampleFormControlInput1" class="form-label">주소</label>
-                  <input class="form-control" type="text" name="userAddress" th:value="${item.userAddress}">
-                </div>
+                  <input class="form-control" type="text" name="zipCode">
               </div>
+                  <div class="row">
+                  	<div class="col">
+                  		<div class="mb-3">
+                  		<input class="form-control" type="text" name="roadAddress">
+                  		</div>
+                  	</div>
+                  	<div class="col">
+                  		<div class="mb-3">
+                  		<input class="form-control" type="text" name="jibunAddress">
+                  		</div>
+                  	</div>
+                </div>
+                  <div class="row">
+                  	<div class="col">
+                  		<div class="mb-3">
+                  		<input class="form-control" type="text" name="detailAddress" th:value="${item.detailAddress}">
+                  		</div>
+                  	</div>
+                  	<div class="col">
+                  		<div class="mb-3">
+                  		<input class="form-control" type="text" name="extraAddress">
+                  		</div>
+                  	</div>
+                </div>
             </div>
            
             <div class="row" style="margin-top: 2%;">

@@ -39,7 +39,7 @@
 		userPw,
 		userEmail,
 		userNickName,
-		userAddress,
+		detailAddress,
 		userDelNy,
 		userRegistrationDate,
 		userModificationDate
@@ -59,7 +59,7 @@
 		userPw,
 		userEmail,
 		userNickName,
-		userAddress,
+		detailAddress,
 		userDelNy
 	FROM
 		user
@@ -80,19 +80,23 @@
 		userPw,
 		userEmail,
 		userNickName,
-		userAddress,
+		zipCode,
+		roadAddress,
+		detailAddress,
 		userDelNy
 	)VALUES(
 		#{userName},
-		1,
+		#{genderCd},
 		#{userBorn},
-		1,
+		#{telAgencyCd},
 		#{userTel},
 		#{userId},
 		#{userPw},
 		#{userEmail},
 		#{userNickName},
-		#{userAddress},
+		#{zipCode},
+		#{roadAddress},
+		#{detailAddress},
 		0
 	)
 </insert>

@@ -11,7 +11,11 @@ public class MemberDto {
 	 private String userPw;
 	 private String userEmail;
 	 private String userNickName;
-	 private String userAddress;
+	 private String zipCode;
+	 private String roadAddress;
+	 private String detailAddress;
+	 private double latitude;
+	 private double hardness;
 	 private Integer userDelNy;
 	 private String userRegistrationDate;
 	 private String userModificationDate;
@@ -24,6 +28,30 @@ public class MemberDto {
 	 private String ifcgSeq;
 	 
 
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getHardness() {
+		return hardness;
+	}
+	public void setHardness(double hardness) {
+		this.hardness = hardness;
+	}
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}
@@ -114,11 +142,11 @@ public class MemberDto {
 	public void setUserNickName(String userNickName) {
 		this.userNickName = userNickName;
 	}
-	public String getUserAddress() {
-		return userAddress;
+	public String getDetailAddress() {
+		return detailAddress;
 	}
-	public void setUserAddress(String userAddress) {
-		this.userAddress = userAddress;
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 	 
 	

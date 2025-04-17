@@ -1,6 +1,4 @@
 package com.a5a5lab.module.codegroup;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,10 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.a5a5lab.module.util.UtilDateTime;
 import com.a5a5lab.module.code.CodeService;
-
-
 @Controller
-
 public class CodeGroupController {
 	
 	@Autowired
@@ -39,21 +34,16 @@ public class CodeGroupController {
 	public String codegroupxdmform(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception {
 		if (vo.getIfcgSeq().equals("0") || vo.getIfcgSeq().equals("")) {
 //			insert mode
-			
 		} else {
 //			update mode
 			model.addAttribute("item", codeGroupService.selectOne(vo));
 //			model.addAttribute("list", codeService.selectList(cvo));
-			
 		}
-		
-		
 		return "xdm/codegroup/CodeGroupXdmForm";
 	}
 	@RequestMapping(value="/codeGroupXdmInst")
 	public String codeGroupXdmInst( CodeGroupDto codeGroupDto) {
 		codeGroupService.insert(codeGroupDto);
-
 		return "redirect:/codegroupXdmList";
 	}
 	@RequestMapping(value="/codeGroupXdmUpdt")

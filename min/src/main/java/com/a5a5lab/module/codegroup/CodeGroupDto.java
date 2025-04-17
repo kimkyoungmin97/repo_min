@@ -34,8 +34,6 @@ public class CodeGroupDto {
 	public void setIfcgName(String ifcgName) {
 		this.ifcgName = ifcgName;
 	}
-	
-	
 	public String getRegistrationDate() {
 		return registrationDate;
 	}

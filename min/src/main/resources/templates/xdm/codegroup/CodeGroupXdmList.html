@@ -106,7 +106,6 @@
                    <div class="col">
                    
                      <table class="table" style="text-align: center;">
-                     
                       <thead>
                         <tr>
                           <th><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></th>
@@ -198,7 +197,6 @@
   let formList = document.getElementById("formList");
   let seq = document.querySelector("input[name=ifcgSeq]");	
   
-  
    function goList(thisPage){ 
 	   formList.action ="/codegroupXdmList";
 	   document.getElementById("thisPage").value=thisPage;
@@ -228,15 +226,11 @@
    document.getElementById("btnForm").onclick = function () {
 	    goForm(0);
 	}
-
-
 	goForm = function (keyValue) {
 	    seq.value = keyValue;
 	    formList.action ="/codegroupXdmForm";
 	    formList.submit();
 	}
- 
-	
   </script>
 
 </body>
