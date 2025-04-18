@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<!--
+ // WEBSITE: https://themefisher.com
+ // TWITTER: https://twitter.com/themefisher
+ // FACEBOOK: https://www.facebook.com/themefisher
+ // GITHUB: https://github.com/themefisher/
+-->
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{user/include/head :: head}"></div>
+
+<body class="body-wrapper">
+
+
+<div th:replace="~{user/include/header :: header}"></div>
+
+
+<section class="user-profile section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				
+		<div th:replace="~{user/include/sidebarMyPage :: sidebarMyPage}"></div>
+				
+			</div>
+			<div class="col-lg-8">
+				<!-- Edit Profile Welcome Text -->
+				<div class="widget welcome-message">
+					<h2>회원정보 수정</h2>
+				</div>
+				<!-- Edit Personal Info -->
+				 <!-- <div class="row">
+					<div class="col">
+						<div class="widget personal-info">
+							<h3 class="widget-header user">랄라라</h3>
+							<form action="#" class="needs-validation" novalidate>
+								우잉
+
+							</form>
+
+						</div>
+					</div>
+
+				 </div> -->
+				 <div class="row">
+					<div class="col">
+						<div class="widget personal-info">
+							<h3 class="widget-header user">개인정보 변경</h3>
+							<form class="needs-validation" action="#" novalidate>
+								<fieldset>
+								  <div class="row">
+										<div class="col-lg-4">
+										<div class="mb-2">
+											<input class="form-control mb-3" type="text" placeholder="이름*" required>
+											<div class="invalid-feedback">
+											이름을 입력해주세요.
+											</div>
+										</div>
+										</div>
+										<div class="col-lg-3">
+										<div class="form-check d-inline-flex">
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required>
+											<label class="form-check-label" for="inlineRadio1">남성</label>
+										</div>
+										<div class="form-check d-inline-flex">
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option2" required>
+											<label class="form-check-label" for="inlineRadio1">여성</label>
+										</div>
+										</div>
+										<div class="col-lg-4">
+										<div class="mb-2">
+											<input class="form-control mb-3" type="text" placeholder="생년월일 8자리*" required>
+											<div class="invalid-feedback">
+											생년월일을 입력해주세요.
+											</div>
+										</div>
+										</div>
+								  </div>
+								  <div class="row">
+										<div class="col-6">
+										<div class="mb-2">
+											<input class="form-control mb-3" type="text" placeholder="아이디*" required>
+											<div class="invalid-feedback">
+											아이디를 입력해주세요.
+											</div>
+										</div>
+										</div>
+								  </div>
+								 
+								  <div class="row">
+										<div class="col-6">
+										<div class="mb-2">
+											<input class="form-control mb-3" type="text" placeholder="이메일*" required>
+											<div class="invalid-feedback">
+											이메일을 입력해주세요.
+											</div>
+										</div>
+										</div>
+								  </div>
+								  <div class="row">
+										<div class="col-6">
+										<div class="mb-2">
+											<input class="form-control mb-3" type="text" placeholder="닉네임*" required>
+											<div class="invalid-feedback">
+											닉네임을 입력해주세요.
+											</div>
+										</div>
+										</div>
+								  </div>
+								  <div class="row">
+										<div class="col-6">
+										<div class="mb-2">
+											<input class="form-control mb-3" type="text" placeholder="차종*" required>
+											<div class="invalid-feedback">
+											차종을 입력해주세요.
+											</div>
+										</div>
+										</div>
+										<div class="col">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+											<label class="form-check-label" for="invalidCheck3">
+											자차여부
+											</label>
+										</div>
+						
+										</div>
+								  </div>
+								  <div class="form-group choose-file d-inline-flex">
+									<i class="fa fa-user text-center px-3"></i>
+									<input type="file" class="form-control-file mt-2 pt-1" id="input-file">
+								  </div>
+								  <div>
+									  <button class="btn btn-transparent">개인정보 변경</button>
+								  </div>
+								</fieldset>
+							  </form>
+							
+							
+						</div>
+					</div>
+				 </div>
+				
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<div th:replace="~{user/include/footer :: footer}"></div>
+
+<div th:replace="~{user/include/script :: script}"></div>
+
+</body>
+
+</html>

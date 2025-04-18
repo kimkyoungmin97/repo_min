@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="sidebarMyPage">
+<div class="sidebar">
+					<!-- User Widget -->
+					<div class="widget user">
+						<!-- User Image -->
+						<div class="image d-flex justify-content-center">
+							<img src="images/user/user-thumb.jpg" alt="" class="">
+						</div>
+						<!-- User Name -->
+						<h5 class="text-center">Samanta Doe</h5>
+					</div>
+					<!-- Dashboard Links -->
+          <div class="widget user-dashboard-menu">
+            <ul>
+				<li><a th:href="@{/iguana/myPage}">회원정보 수정</a></li>
+            	<li><a th:href="@{/iguana/myPagePasswordEdit}">비밀번호 변경</a></li>
+            </ul>
+          </div>
+				</div>
+
+	
+</th:block>

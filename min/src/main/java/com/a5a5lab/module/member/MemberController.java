@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a5a5lab.module.code.CodeService;
+import com.a5a5lab.module.mail.MailService;
 import com.a5a5lab.module.util.UtilDateTime;
 
 import jakarta.servlet.http.HttpSession;
@@ -21,7 +22,10 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	@Autowired
 	CodeService codeService;
+	@Autowired
+	private MailService mailService;
 	
 	@RequestMapping(value="/memberXdmList")
 	public String memberxdmlist(Model model, @ModelAttribute("vo") MemberVo vo) {
@@ -71,6 +75,20 @@ public class MemberController {
 	}
 	
 //------------------------------user
+	@RequestMapping(value="/iguana/loginUser")
+	public String loginUser() {
+		return"user/loginUser";
+	}
+	
+	@RequestMapping(value="/iguana/myPage")
+	public String myPage() {
+		return"user/mypage/MyPage";
+	}
+	@RequestMapping(value="/iguana/myPagePasswordEdit")
+	public String myPagePasswordEdit() {
+		return"user/mypage/MyPagePasswordEdit";
+	}
+	
 	@RequestMapping(value="/iguana/register")
 	public String register(Model model, MemberDto memberDto) throws Exception {
 //		memberService.codeList(memberDto);
@@ -79,9 +97,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/registerInst")
-	public String registerInst(MemberDto memberDto) {
-		memberDto.setUserPw(encodeBcrypt(memberDto.getUserPw(),10));
-		memberService.insert(memberDto);
+	public String registerInst(MemberDto memberDto) throws Exception {
+//		memberDto.setUserPw(encodeBcrypt(memberDto.getUserPw(),10));
+//		memberService.insert(memberDto);
+		
+		Thread thread = new Thread(new Runnable() {
+		    @Override
+		    public void run() {
+		        try {
+		            // 여기에 실행할 코드 작성
+		            mailService.sendMailWelcome();  //회원가입 축하 메일 전송
+		        } catch (Exception e) {
+		            e.printStackTrace(); // 예외 처리
+		        }
+		    }
+		});
+		thread.start(); //실행
 		return"redirect:/index";
 		
 	}
